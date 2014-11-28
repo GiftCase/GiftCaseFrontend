@@ -1,4 +1,4 @@
-C:\Users\Ludo\Desktop\giftcase\platforms\android\ant-build\CordovaApp-debug-unaligned.apk : \
-C:\Users\Ludo\Desktop\giftcase\platforms\android\ant-build\CordovaApp.ap_ \
-C:\Users\Ludo\Desktop\giftcase\platforms\android\ant-build\classes.dex \
-C:\Users\Ludo\Desktop\giftcase\platforms\android\CordovaLib\ant-build\classes.jar \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\ant-build\CordovaApp-debug-unaligned.apk : \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\ant-build\CordovaApp.ap_ \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\ant-build\classes.dex \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\CordovaLib\ant-build\classes.jar \

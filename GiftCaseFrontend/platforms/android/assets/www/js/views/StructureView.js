@@ -12,7 +12,8 @@ define(function(require) {
 
     events: {
       "touchend #nav1": "myView",
-      "touchend #nav2": "map"
+      "touchend #nav2": "map",
+      "touchend #nav3": "contacts"
     },
 
     initialize: function(options) {
@@ -53,6 +54,12 @@ define(function(require) {
 
     myView: function(event) {
       Backbone.history.navigate("myview", {
+        trigger: true
+      });
+    },
+
+    contacts: function(event) {
+      Backbone.history.navigate("contacts", {
         trigger: true
       });
     }
