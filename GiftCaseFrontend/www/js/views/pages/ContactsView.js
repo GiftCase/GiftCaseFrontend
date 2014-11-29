@@ -4,6 +4,7 @@ define(function(require) {
   var ContactsCollection = require("collections/ContactsCollection");
   var ContactView = require("views/pages/ContactView");
   var Utils = require("utils");
+  var _ = require("underscore");
 
   var ContactsView = Utils.Page.extend({
 
@@ -11,21 +12,16 @@ define(function(require) {
 
     id: "contactsview",
     className: "i-g page",
-    events: {
-      "touchend #goToContact": "goToContact"
-    },
 
     //collection: ContactsCollection,
 
     initialize: function() {
       this.template = Utils.templates.contactsList;
-      //this.contacts.on("error", this.errorHandler, this);
-    },
-
-    customSetCollection : function(collectionPar)
-    {
-      this.collection = collectionPar;
+      this.collection = new ContactsCollection({});
       this.collection.on("showContacts", this.showContacts, this );
+      this.collection.setUserId("ana");
+      this.collection.getContacts();
+      //this.contacts.on("error", this.errorHandler, this);
     },
 
     /*errorHandler: function(){
@@ -47,12 +43,6 @@ define(function(require) {
     render: function() {
       $(this.el).html(this.template); 
       return this;
-    },
-
-    goToContact: function(e) {
-      Backbone.history.navigate("map", {
-        trigger: true
-      });
     }
 
   });

@@ -11,8 +11,8 @@ define(function(require) {
     id: "main",
 
     events: {
-      "touchend #nav1": "myView",
-      "touchend #nav2": "map",
+      "touchend #nav1": "contacts",
+      "touchend #nav2": "eventsview",
       "touchend #nav3": "contacts"
     },
 
@@ -42,18 +42,15 @@ define(function(require) {
 
     setActiveTabBarElement: function(elementId) {
       // here we assume that at any time at least one tab bar element is active
-      document.getElementsByClassName("active")[0].classList.remove("active");
+      if (document.getElementsByClassName("active")[0] != undefined)
+      {
+        document.getElementsByClassName("active")[0].classList.remove("active");
+      }
       document.getElementById(elementId).classList.add("active");
     },
 
-    map: function(event) {
-      Backbone.history.navigate("map", {
-        trigger: true
-      });
-    },
-
-    myView: function(event) {
-      Backbone.history.navigate("myview", {
+    eventsview: function(event) {
+      Backbone.history.navigate("eventsview", {
         trigger: true
       });
     },

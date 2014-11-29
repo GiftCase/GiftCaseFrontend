@@ -62,8 +62,10 @@ D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFro
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\StructureView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\ContactsView.js \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\ContactView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\MapView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\MyView.js \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\OneContactView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\lib\backbone \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\lib\handlebars \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\lib\icecream \
@@ -132,6 +134,8 @@ D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFro
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\style\style.scss \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\contact.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\contactsList.html \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\login.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\myview.html \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\oneContact.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\structure.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\ant-build\AndroidManifest.xml \

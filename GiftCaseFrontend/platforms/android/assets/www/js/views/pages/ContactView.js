@@ -1,12 +1,13 @@
 define(function(require) {
 
   var Backbone = require("backbone");
-  var ContactModel = require("models/ContactModel");
   var Utils = require("utils");
 
   var ContactView = Utils.Page.extend({
 
     constructorName: "ContactView",
+
+    templateToUse: '',
 
     customSetModel : function(contactPar)
     {
@@ -15,7 +16,12 @@ define(function(require) {
 
     initialize: function() {
       // load the precompiled template
-      this.template = Utils.templates.contact;
+      if (this.templateToUse == 'eventRelatedContactView'){
+        this.template = Utils.templates.eventRelatedContactView;
+      }
+      else{
+        this.template = Utils.templates.contact;
+      }
       // here we can register to inTheDOM or removing events
       // this.listenTo(this, "inTheDOM", function() {
       //   $('#content').on("swipe", function(data){
@@ -39,10 +45,13 @@ define(function(require) {
       return this;
     },
 
-    openContact: function(e) {   
-      Backbone.history.navigate(
-        "onecontactview/" + JSON.stringify(this.model).replace(/\//g,"\\sl"), 
-        {trigger: true});
+    openContact: function(e) {
+
+      if (this.templateToUse != 'eventRelatedContactView'){   
+        Backbone.history.navigate(
+          "onecontactview/" + JSON.stringify(this.model).replace(/\//g,"\\sl"), 
+          {trigger: true});
+      }
     }
   });
 

@@ -1,8 +1,8 @@
 define(function(require) {
 
   var Backbone = require("backbone");
-  var ContactView = require("models/ContactModel");
   var Utils = require("utils");
+  var ContactModel = require("models/ContactModel");
 
   var OneContactView = Utils.Page.extend({
 
@@ -11,17 +11,15 @@ define(function(require) {
     id: "onecontactview",
     className: "i-g page",
 
-    events: {
-          "touchend": "openContact"
-    },
-
-    customSetModel : function(contactPar)
-    {
-      this.model = contactPar;
-    },
-
     initialize: function() {
       this.template = Utils.templates.oneContact;
+    },
+
+    customInitialize: function(onecontact){
+      onecontact = onecontact.replace(/\\sl/g,"/");
+      var result = $.parseJSON(onecontact);
+      this.model = new ContactModel();
+      this.model.customSetContact(result);
     },
 
     render: function() {

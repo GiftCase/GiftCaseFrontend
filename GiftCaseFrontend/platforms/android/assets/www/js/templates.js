@@ -13,5 +13,10 @@ define({
     myview: "templates/myview.html",
     contactsList: "templates/contactsList.html",
     contact: "templates/contact.html",
-    oneContact: "templates/oneContact.html"
+    oneContact: "templates/oneContact.html",
+    loginview: "templates/login.html",
+    eventsList: "templates/eventsList.html",
+    eventview: "templates/event.html",
+    eventRelatedContactView: "templates/eventRelatedContact.html",
+    oneEvent: "templates/oneEvent.html"
 });
