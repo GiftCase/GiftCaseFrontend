@@ -67,6 +67,36 @@ body {
 .not_scrollable {
   -webkit-overflow-scrolling: auto; }
 
+#loginViewHTML {
+  background-color: #FFFFFF;
+  height:100%;
+  width: 100%;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+#logoContainer {
+  height: 60%;
+
+}
+
+#logoContainer img {
+  height: 80%;
+}
+
+#nameContainer {
+  height: 20%;
+  text-align: center;
+  line-height: 3;
+  font-size: -webkit-xxx-large;
+
+}
+
+#facebookLoginButton {
+  height: 20%;
+  margin: 0 auto;
+}
+
 /* END STRUCTURE */
 #map {
   height: 100%;
