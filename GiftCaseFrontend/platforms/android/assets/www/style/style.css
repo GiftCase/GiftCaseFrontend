@@ -97,6 +97,11 @@ body {
   margin: 0 auto;
 }
 
+.navigate-right img {
+  width: 42px;
+  height: 42px;
+}
+
 /* END STRUCTURE */
 #map {
   height: 100%;

@@ -33,8 +33,8 @@ define(function(require) {
       // by convention, all the inner views of a view must be stored in this.subViews
     },
 
-    id: "contactview",
-    className: "i-g page",
+    tagName: 'li',
+    className: "table-view-cell media",
 
     events: {
           "touchend": "openContact"
