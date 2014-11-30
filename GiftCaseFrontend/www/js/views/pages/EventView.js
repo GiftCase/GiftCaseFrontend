@@ -19,9 +19,6 @@ define(function(require) {
       this.template = Utils.templates.eventview;
     },
 
-    id: "eventview",
-    className: "i-g page",
-
     events: {
           "touchend": "openEvent"
     },

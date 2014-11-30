@@ -34,7 +34,7 @@ define(function(require) {
       this.collection.each(function(oneevent){
           var eventView = new EventView();
           eventView.customSetModel(oneevent);
-          $(self.el).append(eventView.render().el);
+          $(self.el).find('#eventsPlaceHolder').append(eventView.render().el);
         }, this
       );
     },

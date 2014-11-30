@@ -18,9 +18,6 @@ define(function(require) {
         this.template = Utils.templates.eventRelatedContactView;
     },
 
-    id: "eventcontactview",
-    className: "i-g page",
-
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
       return this;
