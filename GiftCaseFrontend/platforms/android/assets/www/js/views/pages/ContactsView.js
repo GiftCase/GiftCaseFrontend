@@ -10,10 +10,6 @@ define(function(require) {
 
     constructorName: "ContactsView",
 
-    id: "contactsview",
-
-    tagName: 'ul',
-
     //collection: ContactsCollection,
 
     initialize: function() {
