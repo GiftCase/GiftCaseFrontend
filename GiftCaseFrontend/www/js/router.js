@@ -64,6 +64,7 @@ define(function(require) {
       if (!this.structureView) {
         this.structureView = new StructureView();
         // put the el element of the structure view into the DOM
+        document.body.removeChild(document.getElementById("loginview"));
         document.body.appendChild(this.structureView.render().el);
         this.structureView.trigger("inTheDOM");
       }
@@ -72,8 +73,11 @@ define(function(require) {
     },
 
     loginview: function() {
-      var loginView = new LoginView({});
-      document.body.appendChild(loginView.render().el);
+      if (!this.loginView) {
+        window.alert("show login");
+        this.loginView = new LoginView({});
+        document.body.appendChild(this.loginView.render().el);
+      }
     },
 
     contacts: function() {
