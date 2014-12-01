@@ -25,7 +25,6 @@ define(function(require) {
     },
 
     id: "myview",
-    className: "i-g page",
 
     events: {
       "touchend #goToMap": "goToMap"

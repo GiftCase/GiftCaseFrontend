@@ -7,8 +7,6 @@ define(function(require) {
 
     constructorName: "EventContactView",
 
-    templateToUse: '',
-
     customSetModel : function(contactPar)
     {
       this.model = contactPar;

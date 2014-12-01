@@ -9,6 +9,10 @@ define(function(require) {
 
     constructorName: "EventView",
 
+    tagName: 'div',
+
+    className: 'col-sm-3 col-md-8',
+
     customSetModel : function(eventPar)
     {
       this.model = eventPar;
@@ -29,7 +33,7 @@ define(function(require) {
       this.model.get('RelatedContacts').each(function(contact){
         var personView = new EventContactView();
         personView.customSetModel(contact);
-          this.$el.find('.customPlaceHolder').append(personView.render().el);
+          $(self.el).find('.customPlaceHolder').append(personView.render().el);
         }, this
       );
       return this;

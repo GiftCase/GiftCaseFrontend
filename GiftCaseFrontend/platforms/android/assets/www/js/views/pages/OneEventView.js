@@ -10,7 +10,6 @@ define(function(require) {
     constructorName: "OneEventView",
 
     id: "oneeventview",
-    className: "i-g page",
 
     initialize: function() {
       this.template = Utils.templates.oneEvent;

@@ -8,7 +8,8 @@ define(function(require) {
     constructorName: "LoginView",
 
     id: "loginview",
-    className: "i-g page",
+    className:"i-g page",
+
     events: {
       "touchend #facebookLoginButton": "facebookLogin"
     },

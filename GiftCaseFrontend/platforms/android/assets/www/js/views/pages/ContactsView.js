@@ -11,7 +11,8 @@ define(function(require) {
     constructorName: "ContactsView",
 
     id: "contactsview",
-    className: "i-g page",
+
+    tagName: 'ul',
 
     //collection: ContactsCollection,
 
@@ -35,7 +36,7 @@ define(function(require) {
       this.collection.each(function(contact){
           var personView = new ContactView();
           personView.customSetModel(contact);
-          $(self.el).append(personView.render().el);
+          $(self.el).find('#contactsList').append(personView.render().el);
         }, this
       );
     },

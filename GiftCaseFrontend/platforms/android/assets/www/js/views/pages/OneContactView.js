@@ -9,7 +9,6 @@ define(function(require) {
     constructorName: "ContactView",
 
     id: "onecontactview",
-    className: "i-g page",
 
     initialize: function() {
       this.template = Utils.templates.oneContact;

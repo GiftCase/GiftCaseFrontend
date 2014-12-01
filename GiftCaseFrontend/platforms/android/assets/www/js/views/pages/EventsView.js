@@ -10,7 +10,6 @@ define(function(require) {
     constructorName: "EventsView",
 
     id: "eventsview",
-    className: "i-g page",
 
     //collection: ContactsCollection,
 
