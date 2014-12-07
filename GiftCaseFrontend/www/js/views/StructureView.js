@@ -13,7 +13,7 @@ define(function(require) {
     events: {
       "touchend #nav1": "contacts",
       "touchend #nav2": "eventsview",
-      "touchend #nav3": "contacts"
+      "touchend #nav3": "giftbox"
     },
 
     initialize: function(options) {
@@ -57,6 +57,12 @@ define(function(require) {
 
     contacts: function(event) {
       Backbone.history.navigate("contacts", {
+        trigger: true
+      });
+    },
+
+    giftbox: function(event) {
+      Backbone.history.navigate("giftbox", {
         trigger: true
       });
     }

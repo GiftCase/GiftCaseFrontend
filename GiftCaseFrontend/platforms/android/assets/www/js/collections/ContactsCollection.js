@@ -4,15 +4,16 @@ define(function(require) {
 	var ContactModel = require("models/ContactModel");
 	var $ = require("jquery");
 	var _ = require("underscore");
+	var URLHelper = require("helpers/URLHelper");
 
 	var ContactsCollection = Backbone.Collection.extend({
 		model: ContactModel,
 		constructorName: "ContactsCollection",
-		urlRoot: "http://giftcase.azurewebsites.net/api/User/Contacts",
 		userId:"",
+		errorMessage:"",
 
 		url: function(){
-			return this.urlRoot + '?userId=' + this.userId;
+			return URLHelper.contacts(this.userId);
 		},
 
 		setUserId: function(userIdPar){
@@ -20,8 +21,9 @@ define(function(require) {
 		},
 		
 		initialize: function () {
+			var self = this;
 	        this.on("invalid", function (model, error) {
-	            Console.log("Houston, we have a problem: " + error);
+	            self.errorMessage = "Ups, an error occured during loading contacts";
 	        });
         },
 
@@ -45,15 +47,28 @@ define(function(require) {
 	     		this.add(oneContact);
 	     	}
 		},
+
+		customChangeCollection : function()
+		{
+			var oneContact = new ContactModel({
+				ImageUrl: "mrun",
+		    	Status: "mrun",
+		    	UserName: "mrun"
+			});
+			this.add(oneContact);
+			console.log("trigger");
+			this.trigger("showContacts");
+		},
 	    
 	    getContacts : function(){
 	    	var self = this;
 			return this.fetch({
 	    		success: function () {
-	             	self.trigger("showContacts");
+	        		self.trigger("showContacts");
 	        	},
 	        	error: function (model, xhr, options) {
-        			Console.log("Something went wrong while getting the contacts collection");
+	        		self.errorMessage = "Ups, an error occured during loading contacts";
+	        		self.trigger("showContacts");
         		}
     		});
 		}

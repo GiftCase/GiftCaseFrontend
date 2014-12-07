@@ -11,7 +11,9 @@ require.config({
     leaflet: '../lib/leaflet/leaflet',
     spin: '../lib/spin/spin.min',
     preloader: '../lib/preloader/pre-loader',
-    utils: '../lib/utils/utils'
+    utils: '../lib/utils/utils',
+    urlhelper: '../js/helpers/URLHelper',
+    collectiontests: '../js/tests/CollectionTests'
   },
   shim: {
     'jquery': {
@@ -30,12 +32,15 @@ require.config({
 });
 
 // We launch the App
-require(['backbone', 'utils'], function(Backbone, Utils) {
-  require(['preloader', 'router'], function(PreLoader, AppRouter) {
+require(['backbone', 'utils', 'urlhelper', 'preloader', 'router', 'collectiontests'],
+ 
+ function(Backbone, Utils, URLHelper, PreLoader, AppRouter, CollectionTests) {
 
     document.addEventListener("deviceready", run, false);
 
     function run() {
+
+      CollectionTests.inboxTest();
 
       // Here we precompile ALL the templates so that the app will be quickier when switching views
       // see utils.js
@@ -59,5 +64,4 @@ require(['backbone', 'utils'], function(Backbone, Utils) {
         }
       });
     }
-  });
 });

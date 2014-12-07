@@ -3,15 +3,16 @@ define(function(require) {
 	var Backbone = require("backbone");
 	var EventModel = require("models/EventModel");
 	var $ = require("jquery");
+	var URLHelper = require("helpers/URLHelper");
 
 	var EventsCollection = Backbone.Collection.extend({
 		model: EventModel,
 		constructorName: "EventsCollection",
-		urlRoot: "http://giftcase.azurewebsites.net/api/User/Events",
 		userId:"",
 
 		url: function(){
-			return this.urlRoot + '?userId=' + this.userId;
+			console.log(URLHelper.events(this.userId));
+			return URLHelper.events(this.userId);
 		},
 
 		setUserId: function(userIdPar){
@@ -20,7 +21,7 @@ define(function(require) {
 		
 		initialize: function () {
 	        this.on("invalid", function (model, error) {
-	            Console.log("Houston, we have a problem: " + error);
+	            console.log("Houston, we have a problem: " + error);
 	        });
         },
 
@@ -40,13 +41,18 @@ define(function(require) {
 	    {
 	    	var self = this;
 			return this.fetch({
-	    		success: function () {
+	    		success: function () { 
 	             	self.trigger("showEvents");
 	        	},
 	        	error: function (model, xhr, options) {
-        			Console.log("Something went wrong while getting the events collection");
+        			console.log("Something went wrong while getting the events collection");
         		}
     		});
+		},
+
+		functionn : function()
+		{
+			this.at(0).customChangeEvent();
 		}
 	});
 

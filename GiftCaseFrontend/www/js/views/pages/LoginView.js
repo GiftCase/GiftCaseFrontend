@@ -7,9 +7,6 @@ define(function(require) {
 
     constructorName: "LoginView",
 
-    id: "loginview",
-    className:"i-g page",
-
     events: {
       "touchend #facebookLoginButton": "facebookLogin"
     },
@@ -22,7 +19,15 @@ define(function(require) {
     },
 
     render: function() {
-      $(this.el).html(this.template); 
+      var $newEl = $(this.template());
+
+      if (this.$el[0].tagName !== $newEl[0].tagName || 
+          this.$el[0].className !== $newEl[0].className || 
+          this.$el[0].id !== $newEl[0].id) {
+        this.setElement($newEl);
+      }
+
+      this.$el.html($newEl.html()); 
       return this;
     },
 

@@ -7,10 +7,6 @@ define(function(require) {
 
     constructorName: "ContactView",
 
-    tagName: 'li',
-
-    className: "table-view-cell media",
-
     events: {
           "touchend": "openContact"
     },
@@ -35,7 +31,16 @@ define(function(require) {
     },
 
     render: function() {
-      $(this.el).html(this.template(this.model.toJSON()));
+      var $newEl = $(this.template(this.model.toJSON()));
+
+      if (this.$el[0].tagName !== $newEl[0].tagName || 
+          this.$el[0].className !== $newEl[0].className || 
+          this.$el[0].id !== $newEl[0].id) {
+        this.setElement($newEl);
+      }
+
+      this.$el.html($newEl.html());
+
       return this;
     },
 

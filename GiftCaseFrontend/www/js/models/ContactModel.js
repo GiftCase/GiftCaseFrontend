@@ -8,16 +8,22 @@ define(function(require) {
 		
 		defaults: {
 		    ImageUrl: '',
-		    Status: '',
-		    UserName: ''
+		    UserStatus: '',
+		    UserName: '',
+		    Name: '',
+		    Gender: '',
+		    Id: ''
 		},
 		
 		customSetContact : function(contactObject)
 		{
 			this.set({
 				ImageUrl: contactObject.ImageUrl, 
-				Status: contactObject.Status, 
-				UserName: contactObject.UserName});
+				UserStatus: contactObject.Status, 
+				UserName: contactObject.UserName,
+				Name: contactObject.Name,
+				Gender: contactObject.Gender,
+				Id : contactObject.Id});
 		}
 	});
 

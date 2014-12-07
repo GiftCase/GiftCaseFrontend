@@ -47,6 +47,7 @@ D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFro
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\anniversary.png \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\appPicture.png \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\birthday.png \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\blue_present.png \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\facebook-login-button.png \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\graduation.png \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\hereIcon.png \
@@ -54,6 +55,7 @@ D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFro
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\loader.gif \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\logo.png \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\collections \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\helpers \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\index.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\main.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\models \
@@ -63,8 +65,11 @@ D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFro
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\collections\ContactsCollection.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\collections\EventsCollection.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\collections\MyCollection.js \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\helpers\URLHelper.js \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\models\CategoryModel.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\models\ContactModel.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\models\EventModel.js \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\models\ItemModel.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\models\MyModel.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\StructureView.js \

@@ -12,6 +12,8 @@ define(function(require) {
   var LoginView = require("views/pages/LoginView");
   var EventsView = require("views/pages/EventsView");
   var OneEventView = require("views/pages/OneEventView");
+  var GiftBoxView = require("views/pages/GiftBoxView");
+  var GiftCollectionView = require("views/pages/GiftCollectionView");
   
   //--------------------------------------------------
   var MyModel = require("models/MyModel");
@@ -29,7 +31,11 @@ define(function(require) {
       "contacts": "contacts",
       "onecontactview/:onecontact" : "onecontactview",
       "eventsview" : "eventsview",
-      "oneeventview/:oneevent" : "oneeventview"
+      "oneeventview/:oneevent" : "oneeventview",
+      "categories" : "categories",
+      "outbox" : "outbox",
+      "inbox" : "inbox",
+      "giftbox" : "giftbox"
     },
 
     initialize: function(options) {
@@ -64,7 +70,7 @@ define(function(require) {
       if (!this.structureView) {
         this.structureView = new StructureView();
         // put the el element of the structure view into the DOM
-        document.body.removeChild(document.getElementById("loginview"));
+        document.body.removeChild(document.getElementById("loginViewHTML"));
         document.body.appendChild(this.structureView.render().el);
         this.structureView.trigger("inTheDOM");
       }
@@ -74,34 +80,90 @@ define(function(require) {
 
     loginview: function() {
       if (!this.loginView) {
-        window.alert("show login");
-        this.loginView = new LoginView({});
+        this.loginView = new LoginView();
         document.body.appendChild(this.loginView.render().el);
       }
     },
 
     contacts: function() {
       this.structureView.setActiveTabBarElement("nav1");
-      var contactsView = new ContactsView({});
+      var contactsView = new ContactsView();
       this.changePage(contactsView);
     },
 
     onecontactview: function(onecontact) {
-      var oneContactView = new OneContactView({});
+      var oneContactView = new OneContactView();
       oneContactView.customInitialize(onecontact);
       this.changePage(oneContactView);
     },
 
     eventsview: function() {
       this.structureView.setActiveTabBarElement("nav2");
-      var eventsView = new EventsView({});
-      this.changePage(eventsView);
+      if (!this.eventsView)
+      {
+        this.eventsView = new EventsView();
+      }
+      this.changePage(this.eventsView);
     },
 
     oneeventview: function(oneevent) {
-      var oneEventView = new OneEventView({});
+      var oneEventView = new OneEventView();
       oneEventView.customInitialize(oneevent);
       this.changePage(oneEventView);
+    },
+
+    categories: function(oneevent) {
+      this.categories = new CategoriesCollection();
+      this.categories.getCategories();
+      this.listenTo(this.categories, "showCategories", this.showCategories);
+    },
+
+    showCategories: function(oneevent) {
+      for(var i = 0; i < this.categories.length; i++)
+      {
+        console.log("Id " + this.categories.at(i).get('Id') + " Name " + 
+          this.categories.at(i).get('Name') + " ParentCategory " + 
+          this.categories.at(i).get('ParentCategory'));
+      }
+    },
+
+    giftbox: function() {
+      this.structureView.setActiveTabBarElement("nav3");
+      if (!this.giftboxview)
+      {
+        this.giftboxview = new GiftBoxView();
+      }
+      this.changePage(this.giftboxview);
+    },
+
+    inbox: function() {
+      this.giftboxview.setActiveTab("Inbox");
+      console.log("Here");
+      var inboxGiftsCollection = new GiftCollectionView(
+        {
+          CollectionType: "Inbox",
+          UserId: encodeURIComponent("10204523203015435"),
+          Start: 0,
+          End: 3
+        });
+
+      
+      this.giftboxview.setView(inboxGiftsCollection);
+      this.changePage(this.giftboxview);
+    },
+
+    outbox: function() {
+      this.giftboxview.setActiveTab("Outbox");
+      var outboxGiftsCollection = new GiftCollectionView(
+        {
+          CollectionType: "Outbox",
+          UserId: "10204523203015435",
+          Start: 0,
+          End: 3
+        });
+      
+      this.giftboxview.setView(outboxGiftsCollection);
+      this.changePage(this.giftboxview);
     }
   });
 

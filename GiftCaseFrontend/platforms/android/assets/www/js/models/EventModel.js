@@ -8,7 +8,7 @@ define(function(require) {
 		constructorName: "EventModel",
 		
 		defaults: {
-		    Date: '',
+		    Datee: '',
 		    Details: '',
 		    RelatedContacts: '',
 		    Type:'',
@@ -16,27 +16,36 @@ define(function(require) {
 		    ImageUrl: ''
 		},
 
-
 	    toJSON: function () {
 	      var json = Backbone.Model.prototype.toJSON.call(this);
-	      json.Date = this.get('Date').toDateString();
+	      json.Datee = this.get('Datee');
 	      return json;
 	    },
 		
-		customSetEvent : function(id, contactObject)
+		customSetEvent : function(id, eventObject)
 		{
 			var contactsCollection = new ContactsCollection();
-			contactsCollection.customInitialize(contactObject.RelatedContacts);
-			var imageUrl = this.getAppropriatePicture(contactObject.Type);
-			var date = new Date(contactObject.Date);
+			contactsCollection.customInitialize(eventObject.RelatedContacts);
+			var imageUrl = this.getAppropriatePicture(eventObject.Type);
+			console.log(contactsCollection.length);
+			var date = new Date(eventObject.Date);
 
 			this.set({
 				Id: id,
-				Date: date, 
-				Details: contactObject.Details, 
-				Type: contactObject.Type,
+				Datee: date, 
+				Details: eventObject.Details, 
+				Type: eventObject.Type,
 				RelatedContacts: contactsCollection,
 				ImageUrl: imageUrl});
+		},
+
+		customChangeEvent : function()
+		{
+			this.get('RelatedContacts').customChangeCollection();
+			this.get('RelatedContacts').each(function(mrun)
+			{
+				console.log(mrun.get('ImageUrl'));
+			});
 		},
 
 		getAppropriatePicture : function(type)
@@ -49,6 +58,10 @@ define(function(require) {
 			}
 			else if(type == "Graduation"){
 				return "img/graduation.png";
+			}
+			else
+			{
+				return "";
 			}
 		}
 	});

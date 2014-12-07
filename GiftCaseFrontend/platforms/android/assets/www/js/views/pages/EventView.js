@@ -9,10 +9,6 @@ define(function(require) {
 
     constructorName: "EventView",
 
-    tagName: 'div',
-
-    className: 'col-sm-3 col-md-8',
-
     customSetModel : function(eventPar)
     {
       this.model = eventPar;
@@ -29,15 +25,28 @@ define(function(require) {
 
     render: function() {
       var self = this;
-      $(this.el).html(this.template(this.model.toJSON()));
+      var $newEl = $(this.template(this.model.toJSON()));
+
+      if (this.$el[0].tagName !== $newEl[0].tagName || 
+          this.$el[0].className !== $newEl[0].className || 
+          this.$el[0].id !== $newEl[0].id) 
+      {
+        this.setElement($newEl);
+      }
+
+      this.$el.html($newEl.html());
+
+
       this.model.get('RelatedContacts').each(function(contact){
         var personView = new EventContactView();
         personView.customSetModel(contact);
-          $(self.el).find('.customPlaceHolder').append(personView.render().el);
+          self.$el.append(personView.render().el);
         }, this
       );
       return this;
     },
+
+    
 
     openEvent: function(e) {   
       Backbone.history.navigate(

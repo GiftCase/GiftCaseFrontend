@@ -9,15 +9,11 @@ define(function(require) {
 
     constructorName: "EventsView",
 
-    id: "eventsview",
-
-    //collection: ContactsCollection,
-
     initialize: function() {
       this.template = Utils.templates.eventsList;
-      this.collection = new EventsCollection({});
-      this.collection.on("showEvents", this.showEvents, this );
-      this.collection.setUserId("ana");
+      this.collection = new EventsCollection();
+      this.listenTo(this.collection, "showEvents", this.render);
+      this.collection.setUserId("10152464438050382");
       this.collection.getEvents();
       //this.contacts.on("error", this.errorHandler, this);
     },
@@ -28,18 +24,28 @@ define(function(require) {
       document.getElementById("error").style.display="initial";
     },*/
   
-    showEvents: function(){
+
+    render: function() { 
+
       var self = this;
+      var $newEl = $(this.template());
+
+      if (this.$el == null ||
+          this.$el[0].tagName !== $newEl[0].tagName || 
+          this.$el[0].className !== $newEl[0].className || 
+          this.$el[0].id !== $newEl[0].id) {
+        this.setElement($(this.template()));
+      }
+      console.log(this.$el[0].tagName);
+
+      this.$el.html($newEl.html());
       this.collection.each(function(oneevent){
           var eventView = new EventView();
           eventView.customSetModel(oneevent);
-          $(self.el).find('#eventsPlaceHolder').append(eventView.render().el);
+          self.$el.append(eventView.render().el);
         }, this
       );
-    },
 
-    render: function() {
-      $(this.el).html(this.template); 
       return this;
     }
 

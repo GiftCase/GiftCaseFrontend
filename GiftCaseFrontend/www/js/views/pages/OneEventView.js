@@ -9,8 +9,6 @@ define(function(require) {
 
     constructorName: "OneEventView",
 
-    id: "oneeventview",
-
     initialize: function() {
       this.template = Utils.templates.oneEvent;
     },
@@ -23,11 +21,20 @@ define(function(require) {
     },
 
     render: function() {
-      $(this.el).html(this.template(this.model.toJSON()));
+      var self = this;
+      var $newEl = $(this.template(this.model.toJSON()));
+
+      if (this.$el[0].tagName !== $newEl[0].tagName || 
+          this.$el[0].className !== $newEl[0].className || 
+          this.$el[0].id !== $newEl[0].id) {
+        this.setElement($newEl);
+      }
+
+      this.$el.html($newEl.html());
       this.model.get('RelatedContacts').each(function(contact){
         var personView = new ContactView();
         personView.customSetModel(contact);
-          this.$el.find('.customPlaceHolder').append(personView.render().el);
+          self.$el.find('.customPlaceHolder').append(personView.render().el);
         }, this
       );
       return this;
