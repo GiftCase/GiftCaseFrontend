@@ -109,18 +109,18 @@ define(function(require) {
 	        		"Item Director " + gift.get('Item').get('Director') +
 	        		"Item Platform " + gift.get('Item').get('Platform') + 
 	        		"Item Artist " + gift.get('Item').get('Artist') + 
-	        		"Sender ImageUrl " + gift.get('Sender').get('ImageUrl') + 
-	        		"Sender Status " + gift.get('Sender').get('Status') +
-	        		"Sender UserName " + gift.get('Sender').get('UserName') +
-	        		"Sender Name " + gift.get('Sender').get('Name') +
-	        		"Sender Gender " + gift.get('Sender').get('Gender') +
-	        		"Sender Id " + gift.get('Sender').get('Id') +
-	        		"Receiver ImageUrl " + gift.get('Receiver').get('ImageUrl') + 
-	        		"Receiver Status " + gift.get('Receiver').get('Status') +
-	        		"Receiver UserName " + gift.get('Receiver').get('UserName') +
-	        		"Receiver Name " + gift.get('Receiver').get('Name') +
-	        		"Receiver Gender " + gift.get('Receiver').get('Gender') +
-	        		"Receiver Id " + gift.get('Receiver').get('Id')
+	        		"Sender ImageUrl " + gift.get('UserWhoGaveTheGift').get('ImageUrl') + 
+	        		"Sender Status " + gift.get('UserWhoGaveTheGift').get('Status') +
+	        		"Sender UserName " + gift.get('UserWhoGaveTheGift').get('UserName') +
+	        		"Sender Name " + gift.get('UserWhoGaveTheGift').get('Name') +
+	        		"Sender Gender " + gift.get('UserWhoGaveTheGift').get('Gender') +
+	        		"Sender Id " + gift.get('UserWhoGaveTheGift').get('Id') +
+	        		"Receiver ImageUrl " + gift.get('UserWhoReceivedTheGift').get('ImageUrl') + 
+	        		"Receiver Status " + gift.get('UserWhoReceivedTheGift').get('Status') +
+	        		"Receiver UserName " + gift.get('UserWhoReceivedTheGift').get('UserName') +
+	        		"Receiver Name " + gift.get('UserWhoReceivedTheGift').get('Name') +
+	        		"Receiver Gender " + gift.get('UserWhoReceivedTheGift').get('Gender') +
+	        		"Receiver Id " + gift.get('UserWhoReceivedTheGift').get('Id')
 	        		);
 	        }, this);
 		},

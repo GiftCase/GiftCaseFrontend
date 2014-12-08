@@ -27,7 +27,6 @@ define(function(require) {
 		
 		customSetItem : function(itemObject)
 		{
-			console.log("Setting item");
 			var category = new CategoryModel();
 			category.customSetCategory(itemObject.Category);
 			this.set({
@@ -47,7 +46,6 @@ define(function(require) {
 				Artist: itemObject.Artist,
 				Developer: itemObject.Developer
 			});
-			console.log("Item set");
 		}
 	});
 

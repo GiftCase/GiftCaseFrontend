@@ -8,6 +8,10 @@ define(function(require) {
 
     constructorName: "ContactView",
 
+    events: {
+      "touchend #sendGiftButton": "sendGiftButton"
+    },
+
     initialize: function() {
       this.template = Utils.templates.oneContact;
     },
@@ -30,6 +34,12 @@ define(function(require) {
 
       this.$el.html($newEl.html());
       return this;
+    },
+
+    sendGiftButton: function(e) {
+        Backbone.history.navigate(
+          "suggestedPresents/" + this.model.get('Id'), 
+          {trigger: true});
     }
   });
 

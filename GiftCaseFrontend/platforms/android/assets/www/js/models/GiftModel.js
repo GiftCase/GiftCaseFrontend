@@ -12,13 +12,12 @@ define(function(require) {
 		    DateOfPurchase: '',
 		    Item: '',
 		    GiftStatus: '',
-		    Sender: '',
-		    Receiver: ''
+		    UserWhoGaveTheGift: '',
+		    UserWhoReceivedTheGift: ''
 		},
 		
 		customSetGift : function(giftObject)
 		{
-			console.log("Creating gift");
 			var sender = new ContactModel();
 			sender.customSetContact(giftObject.UserWhoGaveTheGift);
 			var receiver = new ContactModel();
@@ -26,13 +25,12 @@ define(function(require) {
 			var item = new ItemModel();
 			item.customSetItem(giftObject.Item);
 			var date = new Date(giftObject.DateOfPurchase);
-			console.log("Setting gift fields");
 			this.set({
 				DateOfPurchase: date, 
 				Item: item,
 				GiftStatus: giftObject.Status,
-				Sender: sender,
-				Receiver: receiver
+				UserWhoGaveTheGift: sender,
+				UserWhoReceivedTheGift: receiver
 			});
 		}
 	});

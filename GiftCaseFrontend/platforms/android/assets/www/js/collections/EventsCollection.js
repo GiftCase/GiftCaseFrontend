@@ -11,7 +11,6 @@ define(function(require) {
 		userId:"",
 
 		url: function(){
-			console.log(URLHelper.events(this.userId));
 			return URLHelper.events(this.userId);
 		},
 

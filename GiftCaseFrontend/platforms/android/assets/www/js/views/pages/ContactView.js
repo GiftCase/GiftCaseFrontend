@@ -8,7 +8,7 @@ define(function(require) {
     constructorName: "ContactView",
 
     events: {
-          "touchend": "openContact"
+        "touchend": "openContact"
     },
 
     customSetModel : function(contactPar)

@@ -40,26 +40,22 @@ define(function(require) {
 		{
 			if (count !== "" && targetCategoryId !== "")
 			{
-				console.log("take count + category");
 				return this.urlRoot + this.giftsRoot + this.suggestedGiftRoot + "?userName=" + 
 					targetContactUserName + "&categoryId=" + targetCategoryId + 
 					"&count=" + count;
 			}
 			else if (count === "" && targetCategoryId !== "")
 			{
-				console.log("take category");
 				return this.urlRoot + this.giftsRoot + this.suggestedGiftRoot + "?userName=" + 
 					targetContactUserName + "&categoryId=" + targetCategoryId;
 			}
 			else if (count !== "" && targetCategoryId === "")
 			{
-				console.log("take count");
 				return this.urlRoot + this.giftsRoot + this.suggestedGiftRoot + "?userName=" + 
 					targetContactUserName + "&count=" + count;
 			}
 			else
 			{
-				console.log("take userName");
 				return this.urlRoot + this.giftsRoot + this.suggestedGiftRoot + "?userName=" + 
 					targetContactUserName;
 			}

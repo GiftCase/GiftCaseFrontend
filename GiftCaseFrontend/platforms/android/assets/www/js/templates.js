@@ -20,7 +20,13 @@ define({
     eventRelatedContactView: "templates/eventRelatedContact.html",
     oneEvent: "templates/oneEvent.html",
     itemInboxView: "templates/itemInbox.html",
+    itemOutboxView: "templates/itemOutbox.html",
     giftView: "templates/gift.html",
     giftBoxView: "templates/giftBox.html",
-    giftCollectionList: "templates/giftCollectionList.html"
+    giftCollectionList: "templates/giftCollectionList.html",
+    oneItem: "templates/oneItem.html",
+    oneOutboxGift: "templates/oneOutboxGift.html",
+    oneInboxGift: "templates/oneInboxGift.html",
+    itemsList: "templates/itemsList.html",
+    itemSuggestedView: "templates/itemSuggested.html"
 });

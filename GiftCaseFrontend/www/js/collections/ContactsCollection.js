@@ -56,7 +56,6 @@ define(function(require) {
 		    	UserName: "mrun"
 			});
 			this.add(oneContact);
-			console.log("trigger");
 			this.trigger("showContacts");
 		},
 	    

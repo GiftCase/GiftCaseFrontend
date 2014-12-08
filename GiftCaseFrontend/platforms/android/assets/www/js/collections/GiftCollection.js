@@ -20,13 +20,11 @@ define(function(require) {
 			{
 				case "Outbox": 
 					{
-						console.log(URLHelper.sentGifts(this.userId, this.start, this.end));
 						return URLHelper.sentGifts(this.userId, this.start, this.end); 
 						break;
 					}
 				case "Inbox": 
 					{
-						console.log(URLHelper.receivedGifts(this.userId, this.start, this.end));
 						return URLHelper.receivedGifts(this.userId, this.start, this.end); 
 						break;
 					}
@@ -60,7 +58,6 @@ define(function(require) {
           var giftsArray = new Array();
   		  
 			var results = $.parseJSON(JSON.stringify(response));
-			console.log("Response " + response + " " + this.url());
 	     	for (var i = 0; i < results.length; i++) {
 	     		var oneGift = new GiftModel();
 	     		oneGift.customSetGift(results[i]);
@@ -74,7 +71,6 @@ define(function(require) {
 			return this.fetch({
 	    		success: function () {
 	    			self.triggerAppropriateEvent();
-	    			console.log("Count gifts " + self.length + " " + self.url());
 	        	},
 	        	error: function (model, xhr, options) {
 	        		self.errorMessage = "Ups, an error occured during loading gifts";

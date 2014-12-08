@@ -2,13 +2,17 @@ define(function(require) {
 
   var Backbone = require("backbone");
   var Utils = require("utils");
-  var ItemPresenter = require("presenters/ItemPresenter");
   var ItemView = require("views/pages/ItemView");
   var EventContactView = require("views/pages/EventContactView");
+  var GiftPresenter = require("presenters/GiftPresenter");
 
   var GiftView = Utils.Page.extend({
 
     constructorName: "GiftView",
+
+    events: {
+      "touchend": "openGift"
+    },
 
     initialize: function(options) {
       var options = options ? options : {};
@@ -18,7 +22,10 @@ define(function(require) {
     },
 
     render: function() {
-      var $newEl = $(this.template());
+      var giftPresenter = new GiftPresenter(this.type, this.model);
+      var json = this.model.toJSON();
+      json = giftPresenter.BuildJSON(json);
+      var $newEl = $(this.template(json));
 
       if (this.$el[0].tagName !== $newEl[0].tagName || 
           this.$el[0].className !== $newEl[0].className || 
@@ -28,17 +35,35 @@ define(function(require) {
 
       this.$el.html($newEl.html());
 
-      var presenter = new ItemPresenter(this.type, this.model);
-      console.log(presenter);
-      var itemView = new ItemView({itemPresenter: presenter});
+      var template;
+      if (this.type == "Inbox") {template = Utils.templates.itemInboxView;}
+      else if (this.type == "Outbox") {template = Utils.templates.itemOutboxView;}
+      
+      var itemView = new ItemView({
+        model: this.model.get('Item'),
+        template: template
+      });
       this.$el.find('#giftHolder').append(itemView.render().el);
       
+      var userInformation;
+      switch(this.type)
+      {
+        case "Inbox": userInformation = this.model.get('UserWhoGaveTheGift'); break;
+        case "Outbox": userInformation = this.model.get('UserWhoReceivedTheGift'); break;
+      }
+
       var personView = new EventContactView();
-      console.log(presenter.getUserInformation());
-      personView.customSetModel(presenter.getUserInformation());
+      personView.customSetModel(userInformation);
       this.$el.find('#contactHolder').append(personView.render().el);
 
       return this;
+    },
+
+    openGift: function()
+    {
+      Backbone.history.navigate(
+          "onegiftview/" + JSON.stringify(this.model).replace(/\//g,"\\sl") + "/" + this.type, 
+          {trigger: true});
     }
   });
 

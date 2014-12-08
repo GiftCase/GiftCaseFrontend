@@ -27,7 +27,6 @@ define(function(require) {
 			var contactsCollection = new ContactsCollection();
 			contactsCollection.customInitialize(eventObject.RelatedContacts);
 			var imageUrl = this.getAppropriatePicture(eventObject.Type);
-			console.log(contactsCollection.length);
 			var date = new Date(eventObject.Date);
 
 			this.set({

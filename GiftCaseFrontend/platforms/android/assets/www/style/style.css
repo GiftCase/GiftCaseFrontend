@@ -125,10 +125,6 @@ body {
   text-align: center;
 }
 
-#giftBoxMenu{
-  bottom: 0;
-}
-
-#giftBox{
-  height:inherit;
+.navigate-right:hover{
+  text-decoration: none;
 }

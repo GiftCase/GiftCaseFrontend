@@ -15,7 +15,6 @@ define(function(require) {
 		errorMessage:"",
 
 		url: function(){
-			console.log(URLHelper.suggestedGifts(this.targetContact, this.category, this.count));
 			return URLHelper.suggestedGifts(this.targetContact, this.category, this.count); 
 		},
 		
@@ -42,7 +41,6 @@ define(function(require) {
           var itemsArray = new Array();
   		  
 			var results = $.parseJSON(JSON.stringify(response));
-			console.log("Items response" + results);
 	     	for (var i = 0; i < results.length; i++) {
 	     		var oneItem = new ItemModel();
 	     		oneItem.customSetItem(results[i]);
@@ -56,7 +54,6 @@ define(function(require) {
 			return this.fetch({
 	    		success: function () {
 	    			self.trigger("showItems"); 
-	    			console.log("Count items " + self.length + " " + self.url());
 	        	},
 	        	error: function (model, xhr, options) {
 	        		self.errorMessage = "Ups, an error occured during loading gifts";

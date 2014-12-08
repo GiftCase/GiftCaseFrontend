@@ -1,66 +1,47 @@
 define(function(require) {
 
-	var ItemPresenter = function(type, model)
+	var ItemPresenter = function(model)
 	{
-		var self = this;
-		this.type = type;
 		this.model = model;
-		_.extend(this, this.model.attributes);
-		_.extend(this, 
-		{
-			Date: function() {
-		    	return self.model.get('DateOfPurchase').toDateString();
-			},
+	};
 
-			Category: function() {
-		    	return self.model.get('Item').get('Category').get('Name');
-			},
+	ItemPresenter.prototype.Category = function() {
+    	return this.model.get('Category').get('Name');
+	};
 
-			ContactRole: function() {
-				switch(type)
-				{
-					case "Inbox": return "Sender:"; break;
-					case "Outbox": return "Receiver:"; break;
-				}
-			},
+	ItemPresenter.prototype.Name = function() {
+    	return this.model.get('Name');
+	};
 
-			Name: function() {
-		    	return self.model.get('Item').get('Name');
-			},
+	ItemPresenter.prototype.CreatorType = function() {
+      switch(this.model.get('Category').get('Name'))
+      {
+        case "Video" : {return "Director";break;}
+        case "Game" : {return "Platform";break;}
+        case "Music" : {return "Artist";break;}
+        case "Book" : {return "Author";break;}
+      }
+    };
 
-			Creator: function() {
-		  		switch(self.model.get('Item').get('Category').get('Name'))
-			  	{
-			  		case "Movie" : {return self.model.get('Item').get('Director');break;}
-			  		case "Game" : {return self.model.get('Item').get('Platform');break;}
-			  		case "Music" : {return self.model.get('Item').get('Artist');break;}
-			  		case "Book" : {return self.model.get('Item').get('Author');break;}
-			  	}
-			},
+	ItemPresenter.prototype.Creator = function() {
+  		switch(this.model.get('Category').get('Name'))
+	  	{
+	  		case "Video" : {return this.model.get('Director');break;}
+	  		case "Game" : {return this.model.get('Platform');break;}
+	  		case "Music" : {return this.model.get('Artist');break;}
+	  		case "Book" : {return this.model.get('Author');break;}
+	  	}
+	};
 
-			getUserInformation: function() {
-				switch(type)
-				{
-					case "Inbox": return self.model.get('Sender'); break;
-					case "Outbox": return self.model.get('Receiver'); break;
-				}
-			},
-
-			ShowStatus:function(){
-				switch(type)
-				{
-					case "Inbox": return false; break;
-					case "Outbox": return true; break;
-				}
-			},
-
-			render: function(template){
-				console.log(self);
-				return template(self);
-			}
+	ItemPresenter.prototype.BuildJSON = function(object){
+		$.extend(true, object, {
+			"Category": this.Category(),
+			"Name": this.Name(),
+			"CreatorType": this.CreatorType(),
+			"Creator": this.Creator(),
 		});
-		return this;
-	}
+	    return object;
+	};
 
 	return ItemPresenter;
 });

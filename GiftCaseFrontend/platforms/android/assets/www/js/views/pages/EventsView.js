@@ -36,7 +36,6 @@ define(function(require) {
           this.$el[0].id !== $newEl[0].id) {
         this.setElement($(this.template()));
       }
-      console.log(this.$el[0].tagName);
 
       this.$el.html($newEl.html());
       this.collection.each(function(oneevent){
