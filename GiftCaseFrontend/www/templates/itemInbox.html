@@ -1,0 +1,16 @@
+<a class="navigate-right">
+	<img class="media-object pull-left" src="{{IconUrl}}">
+	<div class="media-body">
+		{{Name}}
+		<p>
+			Date: {{Date}} <br/>
+			Category: {{Category}} <br/>
+			Creator: {{Creator}} <br/>
+			<? if (ShowStatus()) ?>
+			<?{?>
+				Status: {{GiftStatus}}<br/>
+			<?}?>
+			{{ContactRole}}
+		</p>
+	</div>
+</a>

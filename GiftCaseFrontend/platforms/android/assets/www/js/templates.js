@@ -18,5 +18,9 @@ define({
     eventsList: "templates/eventsList.html",
     eventview: "templates/event.html",
     eventRelatedContactView: "templates/eventRelatedContact.html",
-    oneEvent: "templates/oneEvent.html"
+    oneEvent: "templates/oneEvent.html",
+    itemInboxView: "templates/itemInbox.html",
+    giftView: "templates/gift.html",
+    giftBoxView: "templates/giftBox.html",
+    giftCollectionList: "templates/giftCollectionList.html"
 });
