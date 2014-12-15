@@ -46,7 +46,7 @@ define(function(require) {
 
     openContact: function(e) {
         Backbone.history.navigate(
-          "onecontactview/" + JSON.stringify(this.model).replace(/\//g,"\\sl"), 
+          "onecontactview/" + JSON.stringify(this.model).replace(/\//g,"\\sl").replace(/\?/g,"\\questionmark"), 
           {trigger: true});
     }
   });

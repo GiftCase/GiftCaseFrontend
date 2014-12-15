@@ -17,7 +17,7 @@ define(function(require) {
     },
 
     customInitialize: function(onecontact){
-      onecontact = onecontact.replace(/\\sl/g,"/");
+      onecontact = onecontact.replace(/\\sl/g,"/").replace(/\\questionmark/g,"?");
       var result = $.parseJSON(onecontact);
       this.model = new ContactModel();
       this.model.customSetContact(result);

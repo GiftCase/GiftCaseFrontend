@@ -18,6 +18,7 @@ define(function(require) {
       var options = options ? options : {};
       this.model = options.model;
       this.type = options.type;
+      this.appdata = options.appdata;
       this.template = Utils.templates.giftView;
     },
 
@@ -41,7 +42,9 @@ define(function(require) {
       
       var itemView = new ItemView({
         model: this.model.get('Item'),
-        template: template
+        template: template,
+        appdata: this.appdata,
+        handleTouch : false
       });
       this.$el.find('#giftHolder').append(itemView.render().el);
       
@@ -62,7 +65,7 @@ define(function(require) {
     openGift: function()
     {
       Backbone.history.navigate(
-          "onegiftview/" + JSON.stringify(this.model).replace(/\//g,"\\sl") + "/" + this.type, 
+          "onegiftview/" + JSON.stringify(this.model).replace(/\//g,"\\sl").replace(/\?/g,"\\questionmark") + "/" + this.type, 
           {trigger: true});
     }
   });

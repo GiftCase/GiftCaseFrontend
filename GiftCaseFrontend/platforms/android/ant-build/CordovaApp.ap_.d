@@ -54,6 +54,7 @@ D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFro
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\hereIcon@2x.png \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\loader.gif \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\img\logo.png \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\appdata.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\collections \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\helpers \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\index.js \
@@ -87,9 +88,11 @@ D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFro
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\EventContactView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\EventsView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\EventView.js \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\GiftBoxMenuView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\GiftBoxView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\GiftCollectionView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\GiftView.js \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\ItemsView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\ItemView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\LoginView.js \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\js\views\pages\MapView.js \
@@ -188,9 +191,12 @@ D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFro
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\eventsList.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\gift.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\giftBox.html \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\giftBoxMenu.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\giftCollectionList.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\itemInbox.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\itemOutbox.html \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\itemsList.html \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\itemSuggested.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\login.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\myview.html \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\assets\www\templates\oneContact.html \

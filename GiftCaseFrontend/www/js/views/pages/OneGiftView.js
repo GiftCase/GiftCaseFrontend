@@ -10,10 +10,12 @@ define(function(require) {
 
     constructorName: "OneGiftView",
 
-    customInitialize: function(typePar, onegift){
-      onegift = onegift.replace(/\\sl/g,"/");
+    customInitialize: function(typePar, onegift, appdata){
+      onegift = onegift.replace(/\\sl/g,"/").replace(/\\questionmark/g,"?");
       var result = $.parseJSON(onegift);
+      this.appdata = appdata;
       this.model = new GiftModel();
+      console.log(this.model);
       this.model.customSetGift(result);
       this.type = typePar;
       if (this.type === "Inbox")
@@ -45,7 +47,8 @@ define(function(require) {
 
       var personView = new ContactView();
       var itemView = new OneItemView();
-      itemView.customInitialize(this.model.get('Item'));
+      itemView.initializeModel(this.appdata, this.model.get('Item'));
+
       if (this.type === "Inbox")
       {
         personView.customSetModel(this.model.get('UserWhoGaveTheGift'));

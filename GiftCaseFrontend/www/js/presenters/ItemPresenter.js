@@ -1,12 +1,13 @@
 define(function(require) {
 
-	var ItemPresenter = function(model)
+	var ItemPresenter = function(model, appdata)
 	{
 		this.model = model;
+		this.appdata = appdata;
 	};
 
 	ItemPresenter.prototype.Category = function() {
-    	return this.model.get('Category').get('Name');
+    	return this.appdata.getCategoryNameById(this.model.get('Category').get('Id'));
 	};
 
 	ItemPresenter.prototype.Name = function() {
@@ -14,17 +15,17 @@ define(function(require) {
 	};
 
 	ItemPresenter.prototype.CreatorType = function() {
-      switch(this.model.get('Category').get('Name'))
-      {
-        case "Video" : {return "Director";break;}
-        case "Game" : {return "Platform";break;}
-        case "Music" : {return "Artist";break;}
-        case "Book" : {return "Author";break;}
-      }
+		switch(this.appdata.getCategoryName(this.model.get('Category')))
+		{
+			case "Video" : {return "Director";break;}
+			case "Game" : {return "Platform";break;}
+			case "Music" : {return "Artist";break;}
+			case "Book" : {return "Author";break;}
+		}
     };
 
 	ItemPresenter.prototype.Creator = function() {
-  		switch(this.model.get('Category').get('Name'))
+  		switch(this.appdata.getCategoryName(this.model.get('Category')))
 	  	{
 	  		case "Video" : {return this.model.get('Director');break;}
 	  		case "Game" : {return this.model.get('Platform');break;}
@@ -34,11 +35,14 @@ define(function(require) {
 	};
 
 	ItemPresenter.prototype.BuildJSON = function(object){
+		var senderVisible = !(this.model.get('Sender') === "" || this.model.get('Sender') === undefined);
+
 		$.extend(true, object, {
 			"Category": this.Category(),
 			"Name": this.Name(),
 			"CreatorType": this.CreatorType(),
 			"Creator": this.Creator(),
+			"SenderVisible": (senderVisible ? "customvisible" : "custominvisible")
 		});
 	    return object;
 	};

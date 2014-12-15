@@ -13,7 +13,8 @@ require.config({
     preloader: '../lib/preloader/pre-loader',
     utils: '../lib/utils/utils',
     urlhelper: '../js/helpers/URLHelper',
-    collectiontests: '../js/tests/CollectionTests'
+    collectiontests: '../js/tests/CollectionTests',
+    appdata: '../js/appdata'
   },
   shim: {
     'jquery': {
@@ -32,15 +33,15 @@ require.config({
 });
 
 // We launch the App
-require(['backbone', 'utils', 'urlhelper', 'preloader', 'router', 'collectiontests'],
+require(['backbone', 'utils', 'urlhelper', 'preloader', 'router', 'collectiontests', 'appdata'],
  
- function(Backbone, Utils, URLHelper, PreLoader, AppRouter, CollectionTests) {
+ function(Backbone, Utils, URLHelper, PreLoader, AppRouter, CollectionTests, AppData) {
 
     document.addEventListener("deviceready", run, false);
 
     function run() {
-
       CollectionTests.inboxTest();
+      var appDataPar = new AppData();
 
       // Here we precompile ALL the templates so that the app will be quickier when switching views
       // see utils.js
@@ -59,7 +60,9 @@ require(['backbone', 'utils', 'urlhelper', 'preloader', 'router', 'collectiontes
 
         function startRouter() {
           // launch the router
-          var router = new AppRouter();
+          var router = new AppRouter({
+            appData : appDataPar
+          });
           Backbone.history.start();
         }
       });

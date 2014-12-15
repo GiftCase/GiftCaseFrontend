@@ -28,5 +28,6 @@ define({
     oneOutboxGift: "templates/oneOutboxGift.html",
     oneInboxGift: "templates/oneInboxGift.html",
     itemsList: "templates/itemsList.html",
-    itemSuggestedView: "templates/itemSuggested.html"
+    itemSuggestedView: "templates/itemSuggested.html",
+    giftBoxMenu: "templates/giftBoxMenu.html"
 });

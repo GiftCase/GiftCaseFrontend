@@ -12,6 +12,7 @@ define(function(require) {
 
     initialize: function(options) {
       var options = options ? options : {};
+      this.appdata = options.appdata;
       this.template = Utils.templates.giftCollectionList;
       this.collection = new GiftCollection();
       this.collection.setType(options.CollectionType);
@@ -50,7 +51,8 @@ define(function(require) {
           var giftView = new GiftView(
             {
               model: gift,
-              type: this.collection.type 
+              type: this.collection.type,
+              appdata: this.appdata
             });
           self.$el.find('#giftsCollectionHolder').append(giftView.render().el);
         }, this);

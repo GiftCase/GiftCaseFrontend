@@ -11,9 +11,9 @@ define(function(require) {
 
     initialize: function(options) {
       this.template = Utils.templates.itemsList;
+      this.appdata = options.appdata;
       this.collection = new ItemCollection();
       this.listenTo(this.collection, "showItems", this.render);
-      console.log("ItemsView " + options.targetContact);
       this.collection.setTargetContact(options.targetContact);
       this.collection.getItems();
     },
@@ -40,7 +40,9 @@ define(function(require) {
         this.collection.each(function(item){
           var itemView = new ItemView({
             model: item,
-            template: Utils.templates.itemSuggestedView
+            template: Utils.templates.itemSuggestedView,
+            appdata: this.appdata,
+            handleTouch: true
           });
           self.$el.find('#suggestedgiftslist').append(itemView.render().el);
         }, this);

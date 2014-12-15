@@ -13,6 +13,7 @@ define(function(require) {
   var EventsView = require("views/pages/EventsView");
   var OneEventView = require("views/pages/OneEventView");
   var GiftBoxView = require("views/pages/GiftBoxView");
+  var GiftBoxMenuView = require("views/pages/GiftBoxMenuView");
   var GiftCollectionView = require("views/pages/GiftCollectionView");
   var OneGiftView = require("views/pages/OneGiftView");
   var ItemsView = require("views/pages/ItemsView");
@@ -20,6 +21,8 @@ define(function(require) {
 
   //--------------------------------------------------
   var MyModel = require("models/MyModel");
+
+  var Utils = require("utils");
 
   var AppRouter = Backbone.Router.extend({
 
@@ -46,6 +49,7 @@ define(function(require) {
 
     initialize: function(options) {
       this.currentView = undefined;
+      this.appdata = options.appData;
     },
 
     /*myView: function() {
@@ -79,6 +83,7 @@ define(function(require) {
         document.body.removeChild(document.getElementById("loginViewHTML"));
         document.body.appendChild(this.structureView.render().el);
         this.structureView.trigger("inTheDOM");
+        GiftBoxMenuView.removeGiftBoxMenu();
       }
       // go to first view
       //this.navigate(this.firstView, {trigger: true});
@@ -88,6 +93,7 @@ define(function(require) {
       if (!this.loginView) {
         this.loginView = new LoginView();
         document.body.appendChild(this.loginView.render().el);
+        GiftBoxMenuView.removeGiftBoxMenu();
       }
     },
 
@@ -95,12 +101,14 @@ define(function(require) {
       this.structureView.setActiveTabBarElement("nav1");
       var contactsView = new ContactsView();
       this.changePage(contactsView);
+      GiftBoxMenuView.removeGiftBoxMenu();
     },
 
     onecontactview: function(onecontact) {
       var oneContactView = new OneContactView();
       oneContactView.customInitialize(onecontact);
       this.changePage(oneContactView);
+      GiftBoxMenuView.removeGiftBoxMenu();
     },
 
     eventsview: function() {
@@ -110,12 +118,14 @@ define(function(require) {
         this.eventsView = new EventsView();
       }
       this.changePage(this.eventsView);
+      GiftBoxMenuView.removeGiftBoxMenu();
     },
 
     oneeventview: function(oneevent) {
       var oneEventView = new OneEventView();
       oneEventView.customInitialize(oneevent);
       this.changePage(oneEventView);
+      GiftBoxMenuView.removeGiftBoxMenu();
     },
 
     categories: function(oneevent) {
@@ -135,58 +145,63 @@ define(function(require) {
 
     giftbox: function() {
       this.structureView.setActiveTabBarElement("nav3");
-      if (!this.giftboxview)
-      {
-        this.giftboxview = new GiftBoxView();
-      }
-      this.changePage(this.giftboxview);
+      var giftboxview = new GiftBoxView();
+      this.changePage(giftboxview);
+      GiftBoxMenuView.addGiftBoxMenu();
+      GiftBoxMenuView.setActiveGiftBoxBarElement(null);
     },
 
     inbox: function() {
-      this.giftboxview.setActiveTab("Inbox");
+      GiftBoxMenuView.setActiveGiftBoxBarElement("Inbox");
+      this.structureView.setActiveTabBarElement("nav3");
       var inboxGiftsCollection = new GiftCollectionView(
         {
           CollectionType: "Inbox",
           UserId: encodeURIComponent("10204523203015435"),
           Start: 0,
-          End: 3
+          End: 3,
+          appdata: this.appdata
         });
 
-      
-      this.giftboxview.setView(inboxGiftsCollection);
-      this.changePage(this.giftboxview);
+      this.changePage(inboxGiftsCollection);
     },
 
     outbox: function() {
-      this.giftboxview.setActiveTab("Outbox");
+      GiftBoxMenuView.setActiveGiftBoxBarElement("Outbox");
+      this.structureView.setActiveTabBarElement("nav3");
       var outboxGiftsCollection = new GiftCollectionView(
         {
           CollectionType: "Outbox",
           UserId: "10204523203015435",
           Start: 0,
-          End: 3
+          End: 3,
+          appdata: this.appdata
         });
       
-      this.giftboxview.setView(outboxGiftsCollection);
-      this.changePage(this.giftboxview);
+      this.changePage(outboxGiftsCollection);
     },
 
     onegiftview: function(onegift, type) {
+      console.log("Open gift");
       var oneGiftView = new OneGiftView();
-      oneGiftView.customInitialize(type,onegift);
+      oneGiftView.customInitialize(type, onegift, this.appdata);
       this.changePage(oneGiftView);
+      GiftBoxMenuView.removeGiftBoxMenu();
     },
 
     suggestedPresents: function(targetContact) {
       var itemsView = new ItemsView({
-        targetContact: targetContact});
+        targetContact: targetContact,
+        appdata: this.appdata});
       this.changePage(itemsView);
+      GiftBoxMenuView.removeGiftBoxMenu();
     },
 
     oneitemview: function(oneitem) {
       var oneItemView = new OneItemView();
-      oneItemView.customInitializeJSON(oneitem);
+      oneItemView.initializeJSON(oneitem, this.appdata);
       this.changePage(oneItemView);
+      GiftBoxMenuView.removeGiftBoxMenu();
     }
   });
 

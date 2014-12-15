@@ -170,7 +170,7 @@ module.exports.check_android_target = function(valid_target) {
     var msg = 'Failed to run "android". Make sure you have the latest Android SDK installed, and that the "android" command (inside the tools/ folder) is added to your PATH.';
     return tryCommand('android list targets', msg)
     .then(function(output) {
-        if (!output.match(valid_target)) {
+        if (!output.match('\.*' + valid_target + '\.*')) {
             throw new Error('Please install Android target "' + valid_target + '".\n' +
                 'Hint: Run "android" from your command-line to open the SDK manager.');
         }

@@ -14,7 +14,7 @@ define(function(require) {
     },
 
     customInitialize: function(oneevent){
-      oneevent = oneevent.replace(/\\sl/g,"/");
+      oneevent = oneevent.replace(/\\sl/g,"/").replace(/\\questionmark/g,"?");
       var result = $.parseJSON(oneevent);
       this.model = new EventModel();
       this.model.customSetEvent(result.Id,result);

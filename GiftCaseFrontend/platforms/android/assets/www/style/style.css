@@ -128,3 +128,19 @@ body {
 .navigate-right:hover{
   text-decoration: none;
 }
+
+.bar-footer-secondary-custom{
+  bottom: 50px;
+}
+
+.bar-tab-custom{
+  height:50px;
+}
+
+.custominvisible{
+  visibility:hidden;
+}
+
+.customvisible{
+  visibility:visible;
+}

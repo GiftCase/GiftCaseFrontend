@@ -8,24 +8,28 @@ define(function(require) {
 
     constructorName: "OneItemView",
 
-    initialize: function() {
+    initializeJSON: function(oneitem, appdata) {
+
       this.template = Utils.templates.oneItem;
-    },
-
-    customInitialize: function(oneevent){
-      this.model = oneevent;
-    },
-
-    customInitializeJSON: function(oneevent){
-      oneevent = oneevent.replace(/\\sl/g,"/");
-      var result = $.parseJSON(oneevent);
+      oneitem = oneitem.replace(/\\sl/g,"/").replace(/\\questionmark/g,"?");
+      var result = $.parseJSON(oneitem);
       this.model = new ItemModel();
       this.model.customSetItem(result);
+      this.appdata = appdata;
+    },
+
+    initializeModel : function(appdata, model)
+    {
+      this.template = Utils.templates.oneItem;
+      this.model = model;
+      this.appdata = appdata;
     },
 
     render: function() {
+
       var self = this;
-      var itemPresenter = new ItemPresenter(this.model);
+      console.log(this.appdata);
+      var itemPresenter = new ItemPresenter(this.model, this.appdata);
       var json = this.model.toJSON();
       json = itemPresenter.BuildJSON(json);
 

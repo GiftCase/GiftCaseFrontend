@@ -41,8 +41,8 @@ define(function(require) {
 	        		self.trigger("showCategories");
 	        	},
 	        	error: function (model, xhr, options) {
-	        		self.errorMessage = "Ups, an error occured during loading contacts";
-	        		self.trigger("showContacts");
+	        		self.errorMessage = "Ups, an error occured during loading categories";
+	        		self.trigger("showCategories");
         		}
     		});
 		}

@@ -36,11 +36,10 @@ define(function(require) {
 
       this.$el.html($newEl.html());
 
-
       this.model.get('RelatedContacts').each(function(contact){
         var personView = new EventContactView();
         personView.customSetModel(contact);
-          self.$el.append(personView.render().el);
+          self.$el.find('.customPlaceHolder').append(personView.render().el);
         }, this
       );
       return this;
@@ -50,7 +49,7 @@ define(function(require) {
 
     openEvent: function(e) {   
       Backbone.history.navigate(
-        "oneeventview/" + JSON.stringify(this.model).replace(/\//g,"\\sl"), 
+        "oneeventview/" + JSON.stringify(this.model).replace(/\//g,"\\sl").replace(/\?/g,"\\questionmark"), 
         {trigger: true});
     }
   });

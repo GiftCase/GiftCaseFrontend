@@ -1,10 +1,12 @@
 <div>
-	<img src="{{ImageUrl}}" alt="Gift`s picture" width = "80" height = "100"/>
+	<img src="{{IconUrl}}" alt="Gift`s picture" width = "80" height = "100"/>
 	<p>
 		{{Name}}<br/>
 		{{Description}}<br/>
-		Category: {{CategoryName}}<br/>
-		Link: {{LinkToTheStore}}<br/>
-		{{CreatorType}}: {{Creator}}
+		Category: {{Category}}<br/>
+		{{CreatorType}}: {{Creator}}<br/>
+		Link: <a href="{{LinkToTheStore}}">{{LinkToTheStore}}</a>
 	</p>
+	<p class="{{SenderVisible}}"> Sender: {{Sender}}</p>
+	 
 </div>
