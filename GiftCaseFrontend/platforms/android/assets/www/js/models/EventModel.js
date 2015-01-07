@@ -22,9 +22,11 @@ define(function(require) {
 	      return json;
 	    },
 		
-		customSetEvent : function(id, eventObject)
+		customSetEvent : function(id, eventObject, appdata)
 		{
-			var contactsCollection = new ContactsCollection();
+			var contactsCollection = new ContactsCollection({
+				appdata: appdata
+			});
 			contactsCollection.customInitialize(eventObject.RelatedContacts);
 			var imageUrl = this.getAppropriatePicture(eventObject.Type);
 			var date = new Date(eventObject.Date);

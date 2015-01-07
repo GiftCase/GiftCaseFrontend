@@ -14,7 +14,8 @@ require.config({
     utils: '../lib/utils/utils',
     urlhelper: '../js/helpers/URLHelper',
     collectiontests: '../js/tests/CollectionTests',
-    appdata: '../js/appdata'
+    appdata: '../js/appdata',
+    facebook: 'http://connect.facebook.net/en_US/all'
   },
   shim: {
     'jquery': {
@@ -28,19 +29,22 @@ require.config({
     },
     'leaflet': {
       exports: 'L'
+    },
+    'facebook' : {
+      exports: 'FB'
     }
   }
 });
 
 // We launch the App
-require(['backbone', 'utils', 'urlhelper', 'preloader', 'router', 'collectiontests', 'appdata'],
- 
- function(Backbone, Utils, URLHelper, PreLoader, AppRouter, CollectionTests, AppData) {
+ require(['backbone', 'utils', 'preloader', 'router', 'appdata', 'collectiontests'], 
+  function(Backbone, Utils, PreLoader, AppRouter, AppData, CollectionTests) {
+        
+    document.addEventListener("deviceready",
 
-    document.addEventListener("deviceready", run, false);
-
-    function run() {
-      CollectionTests.inboxTest();
+    function() {
+      //CollectionTests.inboxTest();
+       
       var appDataPar = new AppData();
 
       // Here we precompile ALL the templates so that the app will be quickier when switching views
@@ -48,7 +52,6 @@ require(['backbone', 'utils', 'urlhelper', 'preloader', 'router', 'collectiontes
       Utils.loadTemplates().once("templatesLoaded", function() {
 
       var images = []; // here the developer can add the paths to the images that he would like to be preloaded
-
       if (images.length) {
           new PreLoader(images, {
             onComplete: startRouter
@@ -57,7 +60,7 @@ require(['backbone', 'utils', 'urlhelper', 'preloader', 'router', 'collectiontes
           // start the router directly if there are no images to be preloaded
           startRouter();
         }
-
+        
         function startRouter() {
           // launch the router
           var router = new AppRouter({
@@ -66,5 +69,5 @@ require(['backbone', 'utils', 'urlhelper', 'preloader', 'router', 'collectiontes
           Backbone.history.start();
         }
       });
-    }
+    }, false);
 });

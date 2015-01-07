@@ -14,7 +14,9 @@ define(function(require) {
       onegift = onegift.replace(/\\sl/g,"/").replace(/\\questionmark/g,"?");
       var result = $.parseJSON(onegift);
       this.appdata = appdata;
-      this.model = new GiftModel();
+      this.model = new GiftModel({
+        appdata: this.appdata
+      });
       console.log(this.model);
       this.model.customSetGift(result);
       this.type = typePar;

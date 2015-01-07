@@ -6,4 +6,5 @@ D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFro
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\ant-build\classes\io\cordova\giftcase\R$string.class \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\ant-build\classes\io\cordova\giftcase\R$xml.class \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\ant-build\classes\io\cordova\giftcase\R.class \
+D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\ant-build\classes\org\apache\cordova\device\Device.class \
 D:\AJLekc\University\MastersMalardalen\DistributedSystemsDevelopment\GiftCaseFrontend\GiftCaseFrontend\GiftCaseFrontend\platforms\android\ant-build\dexedLibs\classes-0ad1cff87091c51d03c9ac86ff72f0c7.jar \

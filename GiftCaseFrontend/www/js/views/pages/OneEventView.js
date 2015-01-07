@@ -9,15 +9,16 @@ define(function(require) {
 
     constructorName: "OneEventView",
 
-    initialize: function() {
+    initialize: function(options) {
       this.template = Utils.templates.oneEvent;
+      this.appdata = options.appdata;
     },
 
     customInitialize: function(oneevent){
       oneevent = oneevent.replace(/\\sl/g,"/").replace(/\\questionmark/g,"?");
       var result = $.parseJSON(oneevent);
       this.model = new EventModel();
-      this.model.customSetEvent(result.Id,result);
+      this.model.customSetEvent(result.Id, result, this.appdata);
     },
 
     render: function() {

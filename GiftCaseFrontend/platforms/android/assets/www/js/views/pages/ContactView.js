@@ -2,6 +2,7 @@ define(function(require) {
 
   var Backbone = require("backbone");
   var Utils = require("utils");
+  var ContactPresenter = require("presenters/ContactPresenter");
 
   var ContactView = Utils.Page.extend({
 
@@ -31,7 +32,8 @@ define(function(require) {
     },
 
     render: function() {
-      var $newEl = $(this.template(this.model.toJSON()));
+      var presenter = new ContactPresenter(this.model);
+      var $newEl = $(this.template(presenter.BuildJSON(this.model.toJSON())));
 
       if (this.$el[0].tagName !== $newEl[0].tagName || 
           this.$el[0].className !== $newEl[0].className || 

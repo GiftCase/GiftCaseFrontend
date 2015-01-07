@@ -3,6 +3,7 @@ define(function(require) {
   var $ = require("jquery");
   var Backbone = require("backbone");
   var Utils = require("utils");
+  var FacebookHelper = require("helpers/FacebookHelper");
 
   var StructureView = Backbone.View.extend({
 
@@ -13,15 +14,38 @@ define(function(require) {
     events: {
       "touchend #nav1": "contacts",
       "touchend #nav2": "eventsview",
-      "touchend #nav3": "giftbox"
+      "touchend #nav3": "giftbox",
+      "touchend #logoutbutton": "logout"
     },
 
     initialize: function(options) {
       // load the precompiled template
       this.template = Utils.templates.structure;
+      this.appdata = options.appdata;
+      this.appdata.user.getUserDetails();
+      this.listenTo(this.appdata.user, "userDataRead", this.render);
       //this.on("inTheDOM", this.rendered);
       // bind the back event to the goBack function
       //document.getElementById("back").addEventListener("back", this.goBack(), false);
+    },
+
+    logout: function (argument) {
+      FacebookHelper.logout(this.facebookLogoutHandler, this);
+    },
+
+    facebookLogoutHandler: function(self)
+    {
+      self.appdata.user.logout(function()
+        {
+          if (self.appdata.user.errorMessage === "")
+          {
+            navigator.app.exitApp();
+          }
+          else
+          {
+            console.log(self.appdata.user.errorMessage);
+          }
+        });
     },
 
     render: function() {
@@ -29,6 +53,20 @@ define(function(require) {
       this.el.innerHTML = this.template({});
       // cache a reference to the content element
       this.contentElement = this.$el.find('#content')[0];
+      
+      if (this.appdata.user.get('Gender') !== undefined)
+      {
+        var gender;
+        if (this.appdata.user.get('Gender')  === "Male")
+        {
+          gender = "Mr.";
+        }
+        else
+        {
+          gender = "Mrs.";
+        }
+        this.$el.find('#welcomemessage').html("Welcome, " + gender + " " + this.appdata.user.get('Name'));
+      }
       return this;
     },
 
@@ -50,21 +88,38 @@ define(function(require) {
     },
 
     eventsview: function(event) {
+      this.removeWelcomeMessage();
+      
       Backbone.history.navigate("eventsview", {
         trigger: true
       });
     },
 
     contacts: function(event) {
+      
+      this.removeWelcomeMessage();
+
       Backbone.history.navigate("contacts", {
         trigger: true
       });
     },
 
     giftbox: function(event) {
+      
+      this.removeWelcomeMessage();
+
       Backbone.history.navigate("giftbox", {
         trigger: true
       });
+    },
+
+    removeWelcomeMessage: function(){
+      var welcomemessage = document.getElementById("welcomemessage");
+      if (welcomemessage !== null)
+      {
+        var content = document.getElementById("content");
+        content.removeChild(welcomemessage);
+      }
     }
   });
 

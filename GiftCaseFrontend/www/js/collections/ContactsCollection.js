@@ -9,18 +9,16 @@ define(function(require) {
 	var ContactsCollection = Backbone.Collection.extend({
 		model: ContactModel,
 		constructorName: "ContactsCollection",
-		userId:"",
 		errorMessage:"",
+		url:"",
+		newRequest: false,
 
 		url: function(){
-			return URLHelper.contacts(this.userId);
-		},
-
-		setUserId: function(userIdPar){
-			this.userId = userIdPar;
+			return this.url;
 		},
 		
-		initialize: function () {
+		initialize: function (options) {
+			this.appdata = options.appdata;
 			var self = this;
 	        this.on("invalid", function (model, error) {
 	            self.errorMessage = "Ups, an error occured during loading contacts";
@@ -28,13 +26,32 @@ define(function(require) {
         },
 
         parse: function(response){
-          var contactsArray = new Array();
-  		  
+        	var contactsArray;
+        	if (this.newRequest)
+        	{
+        		contactsArray = new Array();
+        	}
+        	else
+        	{
+	        	if (this.models[0] === undefined || this.models[0].get('Id') === '')
+				{
+					// initial list
+					contactsArray = new Array();
+				}
+	        	else
+	        	{
+	        		// keep results from previous fetch
+	        		contactsArray = this.models;
+	        	} 
+        	}           
+  		    var start = contactsArray.length;
 			var results = $.parseJSON(JSON.stringify(response));
 	     	for (var i = 0; i < results.length; i++) {
-	     		var oneContact = new ContactModel();
+	     		var oneContact = new ContactModel({
+	     			appdata: this.appdata
+	     		});
 	     		oneContact.customSetContact(results[i]);
-	     		contactsArray[i] = oneContact;	
+	     		contactsArray[start + i] = oneContact;	
 	     	}
 	     	return contactsArray;
 		},
@@ -42,7 +59,9 @@ define(function(require) {
 		customInitialize: function(response){
 			var results = $.parseJSON(JSON.stringify(response));
 	     	for (var i = 0; i < results.length; i++) {
-	     		var oneContact = new ContactModel();
+	     		var oneContact = new ContactModel({
+	     			appdata: this.appdata
+	     		});
 	     		oneContact.customSetContact(results[i]);
 	     		this.add(oneContact);
 	     	}
@@ -51,6 +70,7 @@ define(function(require) {
 		customChangeCollection : function()
 		{
 			var oneContact = new ContactModel({
+				appdata: this.appdata,
 				ImageUrl: "mrun",
 		    	Status: "mrun",
 		    	UserName: "mrun"
@@ -60,10 +80,22 @@ define(function(require) {
 		},
 	    
 	    getContacts : function(){
+	    	this.url = URLHelper.giftCaseContacts(this.appdata.user.Id);
 	    	var self = this;
-			return this.fetch({
+			this.fetch({
 	    		success: function () {
-	        		self.trigger("showContacts");
+
+	    			self.url = URLHelper.notGiftCaseContacts(self.appdata.user.get('ExtendedToken'));
+
+		    		self.fetch({
+			    		success: function () {
+			        		self.trigger("showContacts");
+			        	},
+			        	error: function (model, xhr, options) {
+			        		self.errorMessage = "Ups, an error occured during loading contacts";
+			        		self.trigger("showContacts");
+		        		}
+		    		});
 	        	},
 	        	error: function (model, xhr, options) {
 	        		self.errorMessage = "Ups, an error occured during loading contacts";

@@ -3,62 +3,114 @@ define(function(require) {
 	var URLHelper = {
 
 		urlRoot: "http://giftcase.azurewebsites.net/api",
-		usersRoot: "/User/Contacts",
+		giftCaseUsersRoot: "/Contacts",
+		notGiftCaseUsersRoot: "/Invites",
 		eventsRoot: "/User/Events",
 		giftsRoot: "/Gifts",
 		categoriesRoot: "/CategoriesList",
 		outboxRoot: "/Outbox",
 		inboxRoot: "/Inbox",
 		suggestedGiftRoot: "/SuggestGift",
+		userRoot: "/User",
+		loginRoot: "/Login",
+		logoutRoot: "/Logout",
+		invitationRoot: "/SendInvitation",
 
-		contacts: function(userId)
+		sendContactInvitation: function(userId, targetUserEmail, targetUserName, text)
 		{
-			return this.urlRoot + this.usersRoot + '?userId=' + userId;
+			console.log("Request " + this.urlRoot + this.userRoot + this.invitationRoot + "?userId=" + 
+				userId + "&email=" + targetUserEmail + "&userName=" + targetUserName + "&text=" +
+				encodeURIComponent("\"" + text + "\""));
+			return this.urlRoot + this.userRoot + this.invitationRoot + "?userId=" + userId + 
+			"&email=" + targetUserEmail + "&userName=" + targetUserName + "&text=" + 
+			encodeURIComponent("\"" + text + "\"");
+		},
+
+		userLogin: function(userId, accessToken, deviceToken)
+		{
+			console.log("Request " + this.urlRoot + this.userRoot + this.loginRoot + "?userId=" + userId + "&accessToken=" + accessToken + "&deviceToken=" + deviceToken);
+			return this.urlRoot + this.userRoot + this.loginRoot + "?userId=" + userId + "&accessToken=" + accessToken + "&deviceToken=" + deviceToken;
+		},
+
+		userLogout: function(userId, deviceToken)
+		{
+			console.log("Request " + this.urlRoot + this.userRoot + this.logoutRoot + "?userId=" + userId + "&deviceToken=" + deviceToken);
+			return this.urlRoot + this.userRoot + this.logoutRoot + "?userId=" + userId + "&deviceToken=" + deviceToken;
+		},
+
+		giftCaseContacts: function(userId)
+		{
+			console.log("Request " + this.urlRoot + this.userRoot + this.giftCaseUsersRoot + '?userId=' + userId);
+			return this.urlRoot + this.userRoot + this.giftCaseUsersRoot + '?userId=' + userId;
+		},
+
+		notGiftCaseContacts: function(accessToken)
+		{
+			console.log("Request " + this.urlRoot + this.userRoot + this.notGiftCaseUsersRoot + '?accessToken=' + accessToken);
+			return this.urlRoot + this.userRoot + this.notGiftCaseUsersRoot + '?accessToken=' + accessToken;
 		},
 
 		events: function(userId)
 		{
+			console.log("Request " + this.urlRoot + this.eventsRoot + '?userId=' + userId);
 			return this.urlRoot + this.eventsRoot + '?userId=' + userId;
 		},
 
 		categories: function()
 		{
+			console.log("Request " + this.urlRoot + this.giftsRoot + this.categoriesRoot);
 			return this.urlRoot + this.giftsRoot + this.categoriesRoot;
 		},
 
 		sentGifts: function(userId, start, end)
 		{
+			console.log("Request " + this.urlRoot + this.giftsRoot + this.outboxRoot + '?userId=' + userId + '&count=' + end);
 			return this.urlRoot + this.giftsRoot + this.outboxRoot + '?userId=' + userId + '&count=' + end;
 		},
 
 		receivedGifts: function(userId, start, end)
 		{
+			console.log("Request " + this.urlRoot + this.giftsRoot + this.inboxRoot + '?userId=' + userId + '&count=' + end);
 			return this.urlRoot + this.giftsRoot + this.inboxRoot + '?userId=' + userId + '&count=' + end;
 		},
 
-		suggestedGifts: function(targetContactUserName, targetCategoryId, count)
+		suggestedGifts: function(targetContactId, targetCategoryId, targetSubcategoryId, priceMin, priceMax, count)
 		{
-			if (count !== "" && targetCategoryId !== "")
+			var resultingURL = this.urlRoot + this.giftsRoot + this.suggestedGiftRoot + 
+				"?userID=" + targetContactId;
+				
+			if (targetCategoryId !== "")
 			{
-				return this.urlRoot + this.giftsRoot + this.suggestedGiftRoot + "?userName=" + 
-					targetContactUserName + "&categoryId=" + targetCategoryId + 
-					"&count=" + count;
+				resultingURL = resultingURL + "&categoryId" + targetCategoryId;
 			}
-			else if (count === "" && targetCategoryId !== "")
+
+			if (targetSubcategoryId !== "")
 			{
-				return this.urlRoot + this.giftsRoot + this.suggestedGiftRoot + "?userName=" + 
-					targetContactUserName + "&categoryId=" + targetCategoryId;
+				resultingURL = resultingURL + "&subcategoryid" + targetSubcategoryId;
 			}
-			else if (count !== "" && targetCategoryId === "")
+
+			if (targetSubcategoryId !== "")
 			{
-				return this.urlRoot + this.giftsRoot + this.suggestedGiftRoot + "?userName=" + 
-					targetContactUserName + "&count=" + count;
+				resultingURL = resultingURL + "&subcategoryid" + targetSubcategoryId;
 			}
-			else
+
+			if (priceMin !== "")
 			{
-				return this.urlRoot + this.giftsRoot + this.suggestedGiftRoot + "?userName=" + 
-					targetContactUserName;
+				resultingURL = resultingURL + "&priceMin" + priceMin;
 			}
+
+			if (priceMax !== "")
+			{
+				resultingURL = resultingURL + "&priceMax" + priceMax;
+			}
+
+			if (count !== "")
+			{
+				resultingURL = resultingURL + "&count" + count;
+			}
+			
+			console.log("Request " + resultingURL);
+			return resultingURL;
 		}
   	};
 

@@ -14,8 +14,32 @@ define(function(require) {
       this.appdata = options.appdata;
       this.collection = new ItemCollection();
       this.listenTo(this.collection, "showItems", this.render);
-      this.collection.setTargetContact(options.targetContact);
+      this.collection.setTargetContactId(options.targetContactId);
       this.collection.getItems();
+      //this.addSpecialMenus();
+    },
+
+    addSpecialMenus: function(){
+      var parentElement = document.getElementById("specializedMenu");
+      var $parent = $(parentElement);
+      var menu = Utils.templates.menuItems();
+      var categories = this.appdata.getAllCategories();
+      var subcategories = this.appdata.getAllSubcategories();
+      var $menuItemCategory = $($(menu).find("#menuItemCategory"));
+      var $menuItemSubcategory = $($(menu).find("#menuItemSubcategory"));
+      for (var i = 0; i < categories.length; i++)
+      {
+        $menuItemCategory.append(Utils.templates.menuItemsOneCategory(categories[i].toJSON()));
+      }
+      for (var i = 0; i < subcategories.length; i++)
+      {
+        $menuItemSubcategory.append(Utils.templates.menuItemsOneCategory(subcategories[i].toJSON()));
+      }
+      var $menu = $(menu);
+      $menu.find("#menuItemCategory").replaceWith($menuItemCategory);
+      $menu.find("#menuItemSubcategory").replaceWith($menuItemSubcategory);
+      $parent.append($menu.html());
+      $("#specializedMenu").replaceWith($parent);
     },
 
     render: function() {

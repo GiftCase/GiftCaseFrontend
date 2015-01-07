@@ -2,11 +2,14 @@ define(function(require) {
 
   var Utils = require("utils");
   var CategoriesCollection = require("collections/CategoriesCollection");
+  var UserModel = require("models/UserModel");
 
   var AppData = function()
   {
+    this.user = new UserModel();
     this.categoriesInitialized = false;
     this.initializeCategories();
+    this.invitationEmailText = "I propose you to use the GiftCase application. It is very nice!";
   };
 
   AppData.prototype.initializeCategories = function()
@@ -21,14 +24,49 @@ define(function(require) {
     this.categoriesInitialized = true;
   };
 
+  AppData.prototype.getAllCategories= function()
+  {
+    if (this.categoriesInitialized === true)
+    {
+      var categoriesCollectionResult = new Array();
+      this.categories.filter(function(category)
+      {
+        if (category.get('ParentCategory') === null)
+        {
+          categoriesCollectionResult.push(category);
+        }
+      });
+      return categoriesCollectionResult;
+    }
+  };
+
+  AppData.prototype.getAllSubcategories= function()
+  {
+    if (this.categoriesInitialized === true)
+    {
+      var categoriesCollectionResult = new Array();
+      this.categories.filter(function(category)
+      {
+        if (category.get('ParentCategory') !== null)
+        {
+          categoriesCollectionResult.push(category);
+        }
+      });
+      return categoriesCollectionResult;
+    }
+  };
+
   AppData.prototype.getCategoryName = function(category)
   {
-    var categoryId = category.get('ParentCategory');
-    if (categoryId === null || categoryId === undefined)
+    if (this.categoriesInitialized === true)
     {
-      categoryId = category.get('Id');
+      var categoryId = category.get('ParentCategory');
+      if (categoryId === null || categoryId === undefined)
+      {
+        categoryId = category.get('Id');
+      }
+      return this.getCategoryNameById(categoryId);
     }
-    return this.getCategoryNameById(categoryId);
   };
 
   AppData.prototype.getCategoryNameById = function(categoryId)
@@ -42,8 +80,8 @@ define(function(require) {
           return category;
         }
       });
+      return searchedCategory.get('Name');
     }
-    return searchedCategory.get('Name'); 
   };
 
   return AppData;

@@ -31,7 +31,8 @@ define(function(require) {
 			}
 		},
 		
-		initialize: function () {
+		initialize: function (options) {
+			this.appdata = options.appdata;
 			var self = this;
 	        this.on("invalid", function (model, error) {
 	            self.errorMessage = "Ups, an error occured during loading the available categories";
@@ -59,7 +60,9 @@ define(function(require) {
   		  
 			var results = $.parseJSON(JSON.stringify(response));
 	     	for (var i = 0; i < results.length; i++) {
-	     		var oneGift = new GiftModel();
+	     		var oneGift = new GiftModel({
+	     			appdata: this.appdata
+	     		});
 	     		oneGift.customSetGift(results[i]);
 	     		giftsArray[i] = oneGift;	
 	     	}

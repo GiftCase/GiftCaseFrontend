@@ -14,7 +14,9 @@ define(function(require) {
       var options = options ? options : {};
       this.appdata = options.appdata;
       this.template = Utils.templates.giftCollectionList;
-      this.collection = new GiftCollection();
+      this.collection = new GiftCollection({
+        appdata: this.appdata
+      });
       this.collection.setType(options.CollectionType);
       switch (options.CollectionType)
       {

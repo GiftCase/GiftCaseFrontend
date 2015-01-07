@@ -15,7 +15,7 @@ define(function(require) {
 		errorMessage:"",
 
 		url: function(){
-			return URLHelper.suggestedGifts(this.targetContact, this.category, this.count); 
+			return URLHelper.suggestedGifts(this.targetContactId, this.category, this.count); 
 		},
 		
 		initialize: function () {
@@ -25,8 +25,9 @@ define(function(require) {
 	        });
         },
 
-		setTargetContact: function(targetContactPar){
-			this.targetContact = targetContactPar; 
+		setTargetContactId: function(targetContactPar){
+			console.log("Setting target contact id " + targetContactPar);
+			this.targetContactId = targetContactPar; 
 		},
 
 		setCategory: function(categoryPar){
@@ -60,6 +61,10 @@ define(function(require) {
         			self.trigger("showItems");
         		}
     		});
+		},
+
+		getMenu: function(){
+			
 		}
 	});
 

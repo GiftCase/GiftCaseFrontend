@@ -12,12 +12,14 @@ define(function(require) {
 
     //collection: ContactsCollection,
 
-    initialize: function() {
+    initialize: function(options) {
+      this.appdata = options.appdata;
       this.template = Utils.templates.contactsList;
       var templateHTML = $(this.template());
-      this.collection = new ContactsCollection();
+      this.collection = new ContactsCollection({
+        appdata: this.appdata
+      });
       this.listenTo(this.collection, "showContacts", this.render);
-      this.collection.setUserId("10152464438050382");
       this.collection.getContacts();
       //this.contacts.on("error", this.errorHandler, this);
     },

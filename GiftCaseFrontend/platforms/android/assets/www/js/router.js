@@ -2,11 +2,10 @@ define(function(require) {
 
   var $ = require("jquery");
   var Backbone = require("backbone");
+  var Utils = require("utils");
   
   //--------------------------------------------------
   var StructureView = require("views/StructureView");
-  var MyView = require("views/pages/MyView");
-  var MapView = require("views/pages/MapView");
   var ContactsView = require("views/pages/ContactsView");
   var OneContactView = require("views/pages/OneContactView");
   var LoginView = require("views/pages/LoginView");
@@ -20,9 +19,7 @@ define(function(require) {
   var OneItemView = require("views/pages/OneItemView");
 
   //--------------------------------------------------
-  var MyModel = require("models/MyModel");
-
-  var Utils = require("utils");
+  var FacebookHelper = require("helpers/FacebookHelper");
 
   var AppRouter = Backbone.Router.extend({
 
@@ -50,6 +47,7 @@ define(function(require) {
     initialize: function(options) {
       this.currentView = undefined;
       this.appdata = options.appData;
+      this.init();
     },
 
     /*myView: function() {
@@ -76,11 +74,55 @@ define(function(require) {
     },*/
 
     // load the structure view
+
+    init: function() {
+      console.log("Passing through init in router");
+      FacebookHelper.initialize(
+        {
+          appdata: this.appdata
+        });
+      FacebookHelper.checkUserLoggedInStatus(this.loggedInStatusHandler, this);
+      this.appdata.user.DeviceId = window.device.uuid;
+    },
+
+    loggedInStatusHandler: function(result, self)
+    {
+      if (result === FacebookHelper.success)
+      {
+        self.showStructure();
+      }
+      else
+      {
+        self.loginview();
+        if (result === FacebookHelper.permissions)
+        {
+          self.loginView.showPermissionsError();
+        }
+      }
+    },
+
+    loginview: function() {
+      if (!this.loginView) {
+        this.loginView = new LoginView(
+          {
+            appdata: this.appdata
+          });
+        document.body.appendChild(this.loginView.render().el);
+        GiftBoxMenuView.removeGiftBoxMenu();
+      }
+    },
+
     showStructure: function() {
       if (!this.structureView) {
-        this.structureView = new StructureView();
+        this.structureView = new StructureView(
+          {
+            appdata: this.appdata
+          });
         // put the el element of the structure view into the DOM
-        document.body.removeChild(document.getElementById("loginViewHTML"));
+        if (document.getElementById("loginViewHTML") !== null)
+        {
+          document.body.removeChild(document.getElementById("loginViewHTML"));
+        }
         document.body.appendChild(this.structureView.render().el);
         this.structureView.trigger("inTheDOM");
         GiftBoxMenuView.removeGiftBoxMenu();
@@ -89,23 +131,21 @@ define(function(require) {
       //this.navigate(this.firstView, {trigger: true});
     },
 
-    loginview: function() {
-      if (!this.loginView) {
-        this.loginView = new LoginView();
-        document.body.appendChild(this.loginView.render().el);
-        GiftBoxMenuView.removeGiftBoxMenu();
-      }
-    },
-
     contacts: function() {
       this.structureView.setActiveTabBarElement("nav1");
-      var contactsView = new ContactsView();
+      var contactsView = new ContactsView(
+        {
+          appdata: this.appdata
+        });
       this.changePage(contactsView);
       GiftBoxMenuView.removeGiftBoxMenu();
     },
 
     onecontactview: function(onecontact) {
-      var oneContactView = new OneContactView();
+      var oneContactView = new OneContactView({
+        appdata: this.appdata
+      });
+      console.log(onecontact);
       oneContactView.customInitialize(onecontact);
       this.changePage(oneContactView);
       GiftBoxMenuView.removeGiftBoxMenu();
@@ -115,14 +155,18 @@ define(function(require) {
       this.structureView.setActiveTabBarElement("nav2");
       if (!this.eventsView)
       {
-        this.eventsView = new EventsView();
+        this.eventsView = new EventsView({
+          appdata: this.appdata
+        });
       }
       this.changePage(this.eventsView);
       GiftBoxMenuView.removeGiftBoxMenu();
     },
 
     oneeventview: function(oneevent) {
-      var oneEventView = new OneEventView();
+      var oneEventView = new OneEventView({
+        appdata: this.appdata
+      });
       oneEventView.customInitialize(oneevent);
       this.changePage(oneEventView);
       GiftBoxMenuView.removeGiftBoxMenu();
@@ -157,7 +201,7 @@ define(function(require) {
       var inboxGiftsCollection = new GiftCollectionView(
         {
           CollectionType: "Inbox",
-          UserId: encodeURIComponent("10204523203015435"),
+          UserId: this.appdata.user.Id,
           Start: 0,
           End: 3,
           appdata: this.appdata
@@ -172,7 +216,7 @@ define(function(require) {
       var outboxGiftsCollection = new GiftCollectionView(
         {
           CollectionType: "Outbox",
-          UserId: "10204523203015435",
+          UserId: this.appdata.user.Id,
           Start: 0,
           End: 3,
           appdata: this.appdata
@@ -189,9 +233,9 @@ define(function(require) {
       GiftBoxMenuView.removeGiftBoxMenu();
     },
 
-    suggestedPresents: function(targetContact) {
+    suggestedPresents: function(targetContactId) {
       var itemsView = new ItemsView({
-        targetContact: targetContact,
+        targetContactId: targetContactId,
         appdata: this.appdata});
       this.changePage(itemsView);
       GiftBoxMenuView.removeGiftBoxMenu();

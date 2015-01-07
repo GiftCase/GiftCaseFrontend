@@ -9,11 +9,14 @@ define(function(require) {
 
     constructorName: "EventsView",
 
-    initialize: function() {
+    initialize: function(options) {
+      this.appdata = options.appdata;
       this.template = Utils.templates.eventsList;
-      this.collection = new EventsCollection();
+      this.collection = new EventsCollection({
+        appdata: this.appdata
+      });
       this.listenTo(this.collection, "showEvents", this.render);
-      this.collection.setUserId("10152464438050382");
+      this.collection.setUserId(this.appdata.user.Id);
       this.collection.getEvents();
       //this.contacts.on("error", this.errorHandler, this);
     },

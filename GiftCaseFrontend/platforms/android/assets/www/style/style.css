@@ -134,7 +134,7 @@ body {
 }
 
 .bar-tab-custom{
-  height:50px;
+  height: 50px;
 }
 
 .custominvisible{
@@ -143,4 +143,13 @@ body {
 
 .customvisible{
   visibility:visible;
+}
+
+#loginButton{
+  width: 80%;
+}
+
+.userInformation{
+  padding-left: 7%;
+  width: 100%
 }

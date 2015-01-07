@@ -7,17 +7,37 @@
         <link rel="stylesheet" href="lib/ratchet/css/ratchet.min.css">
         <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="lib/bootstrap/css/jasny-bootstrap.min.css">
         <link rel="stylesheet" href="lib/icecream/icecream-grid.css">
         <link rel="stylesheet" href="lib/leaflet/leaflet.css">
         <link rel="stylesheet" href="style/style.css"/>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
         <title>Test</title>
     </head>
     <body> 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="lib/ratchet/js/ratchet.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="lib/bootstrap/js/jasny-bootstrap.min.js"></script>
         <script data-main="js/main" src="lib/require/require.js"></script>
+        <script>
+          $(function() {
+            $("#slider-range").slider({
+              range: true,
+              min: 0,
+              max: 500,
+              values: [ 75, 300 ],
+              slide: function( event, ui ) {
+                $("#amount").val("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ]);
+              }
+            });
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+              " - $" + $("#slider-range").slider("values", 1));
+          });
+        </script>
     </body>
 </html>

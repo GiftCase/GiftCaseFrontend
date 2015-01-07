@@ -15,12 +15,20 @@ define(function(require) {
 		    UserWhoGaveTheGift: '',
 		    UserWhoReceivedTheGift: ''
 		},
+
+		initialize: function(options)
+		{
+			this.appdata = options.appdata;
+		},
 		
 		customSetGift : function(giftObject)
 		{
-			var sender = new ContactModel();
+			var sender = new ContactModel({
+				appdata: this.appdata});
 			sender.customSetContact(giftObject.UserWhoGaveTheGift);
-			var receiver = new ContactModel();
+			var receiver = new ContactModel({
+				appdata: this.appdata
+			});
 			receiver.customSetContact(giftObject.UserWhoReceivedTheGift);
 			var item = new ItemModel();
 			item.customSetItem(giftObject.Item);

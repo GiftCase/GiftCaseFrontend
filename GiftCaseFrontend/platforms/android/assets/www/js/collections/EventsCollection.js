@@ -18,7 +18,8 @@ define(function(require) {
 			this.userId = userIdPar;
 		},
 		
-		initialize: function () {
+		initialize: function (options) {
+			this.appdata = options.appdata;
 	        this.on("invalid", function (model, error) {
 	            console.log("Houston, we have a problem: " + error);
 	        });
@@ -30,7 +31,7 @@ define(function(require) {
 		  var results = $.parseJSON(JSON.stringify(response));
      	  for (var i = 0; i < results.length; i++) {
      		var oneEvent = new EventModel();
-     		oneEvent.customSetEvent(i, results[i]);
+     		oneEvent.customSetEvent(i, results[i], this.appdata);
      		eventsArray[i] = oneEvent;	
      	  }
      	  return eventsArray;
