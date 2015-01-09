@@ -1,12 +1,20 @@
 <div>
 	<img src="{{IconUrl}}" alt="Gift`s picture" width = "80" height = "100"/>
+	
 	<p>
 		{{Name}}<br/>
 		{{Description}}<br/>
 		Category: {{Category}}<br/>
 		{{CreatorType}}: {{Creator}}<br/>
-		Link: <a href="{{LinkToTheStore}}">{{LinkToTheStore}}</a>
+		Link: <a href="{{LinkToTheStore}}">{{LinkToTheStore}}</a><br/>
+		Price: {{Price}} {{PriceCurrency}}
 	</p>
+	
 	<p class="{{SenderVisible}}"> Sender: {{Sender}}</p>
-	 
+
+	<div class="btn-group btn-group-justified" role="group" aria-label="...">
+	  <div class="btn-group" role="group">
+	    <button type="button" class="btn btn-default" id="sendGiftButton">Send Gift</button>
+	  </div>
+	</div>	 
 </div>

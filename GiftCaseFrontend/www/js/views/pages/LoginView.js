@@ -43,10 +43,12 @@ define(function(require) {
     {
      if (loginResult === FacebookHelper.success)
       {
-        self.appdata.user.getUserDetails();
-        Backbone.history.navigate("showstructure", {
-          trigger: true
+        self.listenTo(self.appdata.user, "userDataRead", function(){
+            Backbone.history.navigate("showstructure", {
+            trigger: true
+          });
         });
+        self.appdata.user.getUserDetails();
       }
       else if (loginResult === FacebookHelper.permissions)
       {

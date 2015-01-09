@@ -5,17 +5,26 @@ define(function(require) {
 	var $ = require("jquery");
 	var _ = require("underscore");
 	var URLHelper = require("helpers/URLHelper");
+	var SortHelper = require("helpers/SortHelper");
 
 	var ItemCollection = Backbone.Collection.extend({
 		model: ItemModel,
 		constructorName: "ItemCollection",
 		targetContact:"",
 		category:"",
-		count:"",
+		count: 10,
 		errorMessage:"",
+		sortorder: "asc",
+		sortproperty: "Name",
 
 		url: function(){
-			return URLHelper.suggestedGifts(this.targetContactId, this.category, this.count); 
+			return URLHelper.suggestedGifts(
+				this.targetContactId,
+				this.category,
+				this.subcategory, 
+				this.minPrice,
+				this.maxPrice,
+				this.count); 
 		},
 		
 		initialize: function () {
@@ -26,12 +35,23 @@ define(function(require) {
         },
 
 		setTargetContactId: function(targetContactPar){
-			console.log("Setting target contact id " + targetContactPar);
 			this.targetContactId = targetContactPar; 
 		},
 
-		setCategory: function(categoryPar){
+		setCategoryId: function(categoryPar){
 			this.category = categoryPar; 
+		},
+
+		setSubCategoryId: function(subCategoryPar){
+			this.subcategory = subCategoryPar; 
+		},
+
+		setMinPrice: function(subMinPricePar){
+			this.minPrice = subMinPricePar; 
+		},
+
+		setMaxPrice: function(subMaxPricePar){
+			this.maxPrice = subMaxPricePar; 
 		},
 
 		setCount: function(countPar){
@@ -54,6 +74,7 @@ define(function(require) {
 	    	var self = this;
 			return this.fetch({
 	    		success: function () {
+	    			self.sort(self.sortorder);
 	    			self.trigger("showItems"); 
 	        	},
 	        	error: function (model, xhr, options) {
@@ -63,8 +84,10 @@ define(function(require) {
     		});
 		},
 
-		getMenu: function(){
-			
+		sort: function(order)
+		{
+			this.sortorder = order;
+			this.models.sort(SortHelper.compare(this.sortproperty, this.sortorder));
 		}
 	});
 

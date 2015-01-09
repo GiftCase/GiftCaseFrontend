@@ -3,6 +3,7 @@ define(function(require) {
   var Backbone = require("backbone");
   var ItemCollection = require("collections/ItemCollection");
   var ItemView = require("views/pages/ItemView");
+  var SpecialMenuHelper = require("helpers/SpecialMenuHelper");
   var Utils = require("utils");
 
   var ItemsView = Utils.Page.extend({
@@ -16,30 +17,7 @@ define(function(require) {
       this.listenTo(this.collection, "showItems", this.render);
       this.collection.setTargetContactId(options.targetContactId);
       this.collection.getItems();
-      //this.addSpecialMenus();
-    },
-
-    addSpecialMenus: function(){
-      var parentElement = document.getElementById("specializedMenu");
-      var $parent = $(parentElement);
-      var menu = Utils.templates.menuItems();
-      var categories = this.appdata.getAllCategories();
-      var subcategories = this.appdata.getAllSubcategories();
-      var $menuItemCategory = $($(menu).find("#menuItemCategory"));
-      var $menuItemSubcategory = $($(menu).find("#menuItemSubcategory"));
-      for (var i = 0; i < categories.length; i++)
-      {
-        $menuItemCategory.append(Utils.templates.menuItemsOneCategory(categories[i].toJSON()));
-      }
-      for (var i = 0; i < subcategories.length; i++)
-      {
-        $menuItemSubcategory.append(Utils.templates.menuItemsOneCategory(subcategories[i].toJSON()));
-      }
-      var $menu = $(menu);
-      $menu.find("#menuItemCategory").replaceWith($menuItemCategory);
-      $menu.find("#menuItemSubcategory").replaceWith($menuItemSubcategory);
-      $parent.append($menu.html());
-      $("#specializedMenu").replaceWith($parent);
+      SpecialMenuHelper.addSpecialMenusItemCollection(this);
     },
 
     render: function() {
@@ -66,7 +44,8 @@ define(function(require) {
             model: item,
             template: Utils.templates.itemSuggestedView,
             appdata: this.appdata,
-            handleTouch: true
+            handleTouch: true,
+            targetContactId: this.collection.targetContactId
           });
           self.$el.find('#suggestedgiftslist').append(itemView.render().el);
         }, this);

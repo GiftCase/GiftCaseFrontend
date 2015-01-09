@@ -18,6 +18,7 @@ define(function(require) {
       this.model = options.model;
       this.appdata = options.appdata;
       this.handleTouch = options.handleTouch;
+      this.targetContactId = options.targetContactId;
     },
 
     render: function() {
@@ -42,7 +43,8 @@ define(function(require) {
       if (this.handleTouch)
       {
         Backbone.history.navigate(
-          "oneitemview/" + JSON.stringify(this.model).replace(/\//g,"\\sl").replace(/\?/g,"\\questionmark"), 
+          "oneitemview/" + JSON.stringify(this.model).replace(/\//g,"\\sl").replace(/\?/g,"\\questionmark")+
+          "/" + this.targetContactId, 
           {trigger: true});
       }
     }

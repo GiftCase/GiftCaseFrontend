@@ -4,6 +4,7 @@ define(function(require) {
   var Backbone = require("backbone");
   var Utils = require("utils");
   var FacebookHelper = require("helpers/FacebookHelper");
+  var ItemsView = require("views/pages/ItemsView");
 
   var StructureView = Backbone.View.extend({
 
@@ -15,15 +16,14 @@ define(function(require) {
       "touchend #nav1": "contacts",
       "touchend #nav2": "eventsview",
       "touchend #nav3": "giftbox",
-      "touchend #logoutbutton": "logout"
+      "touchend #logoutbutton": "logout",
+      "touchend #closebutton": "close"
     },
 
     initialize: function(options) {
       // load the precompiled template
       this.template = Utils.templates.structure;
       this.appdata = options.appdata;
-      this.appdata.user.getUserDetails();
-      this.listenTo(this.appdata.user, "userDataRead", this.render);
       //this.on("inTheDOM", this.rendered);
       // bind the back event to the goBack function
       //document.getElementById("back").addEventListener("back", this.goBack(), false);
@@ -120,6 +120,10 @@ define(function(require) {
         var content = document.getElementById("content");
         content.removeChild(welcomemessage);
       }
+    },
+
+    close: function(){
+      document.getElementById("content").click();
     }
   });
 

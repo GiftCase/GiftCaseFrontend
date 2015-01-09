@@ -15,6 +15,16 @@ define(function(require) {
 		loginRoot: "/Login",
 		logoutRoot: "/Logout",
 		invitationRoot: "/SendInvitation",
+		sendGiftRoot: "/SendGift",
+
+		sendGift: function(itemId, storeName, userId, contactId)
+		{
+			var url = this.urlRoot + this.giftsRoot + this.sendGiftRoot + "?itemId=" + itemId +
+				"&store=" + storeName + "&userId=" + userId + "&contactId=" + contactId;
+
+			console.log("Request " + url);
+			return url;
+		},
 
 		sendContactInvitation: function(userId, targetUserEmail, targetUserName, text)
 		{
@@ -79,34 +89,29 @@ define(function(require) {
 			var resultingURL = this.urlRoot + this.giftsRoot + this.suggestedGiftRoot + 
 				"?userID=" + targetContactId;
 				
-			if (targetCategoryId !== "")
+			if (targetCategoryId !== "" && targetCategoryId !== undefined)
 			{
-				resultingURL = resultingURL + "&categoryId" + targetCategoryId;
+				resultingURL = resultingURL + "&categoryId=" + targetCategoryId;
 			}
 
-			if (targetSubcategoryId !== "")
+			if (targetSubcategoryId !== "" && targetSubcategoryId !== undefined)
 			{
-				resultingURL = resultingURL + "&subcategoryid" + targetSubcategoryId;
+				resultingURL = resultingURL + "&subcategoryId=" + targetSubcategoryId;
 			}
 
-			if (targetSubcategoryId !== "")
+			if (priceMin !== "" && priceMin !== undefined)
 			{
-				resultingURL = resultingURL + "&subcategoryid" + targetSubcategoryId;
+				resultingURL = resultingURL + "&priceMin=" + priceMin;
 			}
 
-			if (priceMin !== "")
+			if (priceMax !== "" && priceMax !== undefined)
 			{
-				resultingURL = resultingURL + "&priceMin" + priceMin;
+				resultingURL = resultingURL + "&priceMax=" + priceMax;
 			}
 
-			if (priceMax !== "")
+			if (count !== "" && count !== undefined)
 			{
-				resultingURL = resultingURL + "&priceMax" + priceMax;
-			}
-
-			if (count !== "")
-			{
-				resultingURL = resultingURL + "&count" + count;
+				resultingURL = resultingURL + "&count=" + count;
 			}
 			
 			console.log("Request " + resultingURL);

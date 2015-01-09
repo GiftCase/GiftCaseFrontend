@@ -31,5 +31,9 @@ define({
     itemSuggestedView: "templates/itemSuggested.html",
     giftBoxMenu: "templates/giftBoxMenu.html",
     menuItems: "templates/menuItems.html",
-    menuItemsOneCategory: "templates/menuItemsOneCategory.html"
+    menuItemsOneCategory: "templates/menuItemsOneCategory.html",
+    initialview: "templates/initialView.html",
+    buygiftview: "templates/buyGift.html",
+    creditCardInformation: "templates/creditCardInformation.html",
+    paypalInformation: "templates/paypalInformation.html"
 });

@@ -44,7 +44,8 @@ define(function(require) {
         model: this.model.get('Item'),
         template: template,
         appdata: this.appdata,
-        handleTouch : false
+        handleTouch : false,
+        targetContactId: ""
       });
       this.$el.find('#giftHolder').append(itemView.render().el);
       

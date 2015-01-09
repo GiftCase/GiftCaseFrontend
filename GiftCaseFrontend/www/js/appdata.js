@@ -40,16 +40,23 @@ define(function(require) {
     }
   };
 
-  AppData.prototype.getAllSubcategories= function()
+  AppData.prototype.getAllSubcategories = function(searchedcategory)
   {
+    var self = this;
     if (this.categoriesInitialized === true)
     {
       var categoriesCollectionResult = new Array();
-      this.categories.filter(function(category)
+      this.categories.filter(function(subcategory)
       {
-        if (category.get('ParentCategory') !== null)
+        if (subcategory.get('ParentCategory') !== null && 
+            subcategory.get('ParentCategory') !== undefined)
         {
-          categoriesCollectionResult.push(category);
+        }
+        if (subcategory.get('ParentCategory') !== null && 
+            subcategory.get('ParentCategory') !== undefined &&
+            self.getCategoryNameById(subcategory.get('ParentCategory')) === searchedcategory)
+        {
+          categoriesCollectionResult.push(subcategory);
         }
       });
       return categoriesCollectionResult;
@@ -66,6 +73,22 @@ define(function(require) {
         categoryId = category.get('Id');
       }
       return this.getCategoryNameById(categoryId);
+    }
+  };
+
+  AppData.prototype.getCategoryIdByName = function(categoryName)
+  {
+    if (this.categoriesInitialized === true)
+    {
+      var searchedCategory= this.categories.find(function(category)
+      {
+        if (category.get('Name') === categoryName)
+        {
+          console.log(category);
+          return category;
+        }
+      });
+      return searchedCategory.get('Id');
     }
   };
 

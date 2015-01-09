@@ -30,9 +30,9 @@ define(function(require) {
 
 	ContactPresenter.prototype.BuildJSON = function(object) { 
 	   $.extend(true, object, {
-	   	"Registered": this.Registered(),
-	   	"StatusFormatted": this.StatusFormatted(),
-	   	"SendGiftPossible": this.SendGiftPossible()
+		   	"Registered": this.Registered(),
+		   	"StatusFormatted": this.StatusFormatted(),
+		   	"SendGiftPossible": this.SendGiftPossible()
 	   });
 	   return object;
 	};

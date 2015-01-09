@@ -8,7 +8,11 @@ define(function(require) {
 
     constructorName: "OneItemView",
 
-    initializeJSON: function(oneitem, appdata) {
+    events: {
+        "touchend #sendGiftButton": "sendGift"
+    },
+
+    initializeJSON: function(oneitem, appdata, targetContactId) {
 
       this.template = Utils.templates.oneItem;
       oneitem = oneitem.replace(/\\sl/g,"/").replace(/\\questionmark/g,"?");
@@ -16,6 +20,7 @@ define(function(require) {
       this.model = new ItemModel();
       this.model.customSetItem(result);
       this.appdata = appdata;
+      this.targetContactId = targetContactId;
     },
 
     initializeModel : function(appdata, model)
@@ -43,6 +48,13 @@ define(function(require) {
 
       this.$el.html($newEl.html());
       return this;
+    },
+
+    sendGift: function(){
+      Backbone.history.navigate(
+          "sendgiftview/" + JSON.stringify(this.model).replace(/\//g,"\\sl").replace(/\?/g,"\\questionmark") + 
+          "/" + this.targetContactId, 
+          {trigger: true});
     }
   });
 
