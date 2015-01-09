@@ -13,7 +13,9 @@ define(function(require) {
     initialize: function(options) {
       this.template = Utils.templates.itemsList;
       this.appdata = options.appdata;
-      this.collection = new ItemCollection();
+      this.collection = new ItemCollection({
+        appdata: this.appdata
+      });
       this.listenTo(this.collection, "showItems", this.render);
       this.collection.setTargetContactId(options.targetContactId);
       this.collection.getItems();

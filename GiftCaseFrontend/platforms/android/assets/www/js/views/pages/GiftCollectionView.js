@@ -50,13 +50,16 @@ define(function(require) {
       else
       {
         this.collection.each(function(gift){
-          var giftView = new GiftView(
-            {
-              model: gift,
-              type: this.collection.type,
-              appdata: this.appdata
-            });
-          self.$el.find('#giftsCollectionHolder').append(giftView.render().el);
+          if (gift.get('Item') !== "")
+          {
+            var giftView = new GiftView(
+              {
+                model: gift,
+                type: this.collection.type,
+                appdata: this.appdata
+              });
+            self.$el.find('#giftsCollectionHolder').append(giftView.render().el);
+          }
         }, this);
         this.$el.find('#errorContactsList').hide();
       }

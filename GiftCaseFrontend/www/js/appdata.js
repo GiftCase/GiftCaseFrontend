@@ -49,10 +49,6 @@ define(function(require) {
       this.categories.filter(function(subcategory)
       {
         if (subcategory.get('ParentCategory') !== null && 
-            subcategory.get('ParentCategory') !== undefined)
-        {
-        }
-        if (subcategory.get('ParentCategory') !== null && 
             subcategory.get('ParentCategory') !== undefined &&
             self.getCategoryNameById(subcategory.get('ParentCategory')) === searchedcategory)
         {
@@ -67,6 +63,10 @@ define(function(require) {
   {
     if (this.categoriesInitialized === true)
     {
+      if (category === "")
+      {
+        return "";
+      }
       var categoryId = category.get('ParentCategory');
       if (categoryId === null || categoryId === undefined)
       {

@@ -6,6 +6,8 @@ define(function(require) {
   	};
 
   	GiftPresenter.prototype.DateFormatted = function() { 
+  		console.log(this.model);
+  		console.log(this.model.get('DateOfPurchase'));
 	   return this.model.get('DateOfPurchase').toDateString();
 	};
 

@@ -18,14 +18,14 @@ define(function(require) {
       oneitem = oneitem.replace(/\\sl/g,"/").replace(/\\questionmark/g,"?");
       var result = $.parseJSON(oneitem);
       this.model = new ItemModel();
-      this.model.customSetItem(result);
+      this.model.customSetItem(appdata, result);
       this.appdata = appdata;
       this.targetContactId = targetContactId;
     },
 
     initializeModel : function(appdata, model)
     {
-      this.template = Utils.templates.oneItem;
+      this.template = Utils.templates.oneItemGift;
       this.model = model;
       this.appdata = appdata;
     },

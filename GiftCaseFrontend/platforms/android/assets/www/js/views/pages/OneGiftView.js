@@ -5,10 +5,15 @@ define(function(require) {
   var ContactView = require("views/pages/ContactView");
   var OneItemView = require("views/pages/OneItemView");
   var GiftPresenter = require("presenters/GiftPresenter");
+    var URLHelper = require("helpers/URLHelper");
 
   var OneGiftView = Utils.Page.extend({
 
     constructorName: "OneGiftView",
+
+    events: {
+        "touchend #downloadButton": "downloadGift"
+    },
 
     customInitialize: function(typePar, onegift, appdata){
       onegift = onegift.replace(/\\sl/g,"/").replace(/\\questionmark/g,"?");
@@ -65,6 +70,22 @@ define(function(require) {
       }
 
       return this;
+    },
+
+    downloadGift: function()
+    {
+      var self = this;
+      $.get(URLHelper.downloadGift(this.model.get('Item').get('Id'), this.appdata.user.Id), 
+        function(data) {
+          if (data === false)
+          {
+            $('#downloadgiftresult').html("An error has occured during downloading of gift");
+          }
+          $('#downloadgiftresult').html("The process of dowloading the gift has successfully started");
+        }, 'json').error(
+          function() {
+          $('#downloadgiftresult').html("An error has occured during downloading of gift");
+      });
     }
   });
 

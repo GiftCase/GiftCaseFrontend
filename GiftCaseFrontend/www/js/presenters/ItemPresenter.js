@@ -7,7 +7,14 @@ define(function(require) {
 	};
 
 	ItemPresenter.prototype.Category = function() {
-    	return this.appdata.getCategoryNameById(this.model.get('Category').get('Id'));
+		if (this.model.get('Category') === "")
+		{
+			return "";
+		}
+		else
+		{
+    		return this.appdata.getCategoryNameById(this.model.get('Category').get('Id'));
+    	}
 	};
 
 	ItemPresenter.prototype.Name = function() {

@@ -25,6 +25,7 @@ define({
     giftBoxView: "templates/giftBox.html",
     giftCollectionList: "templates/giftCollectionList.html",
     oneItem: "templates/oneItem.html",
+    oneItemGift: "templates/oneItemGift.html",
     oneOutboxGift: "templates/oneOutboxGift.html",
     oneInboxGift: "templates/oneInboxGift.html",
     itemsList: "templates/itemsList.html",

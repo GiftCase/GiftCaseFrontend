@@ -23,7 +23,7 @@ define(function(require) {
       var result = $.parseJSON(oneitem);
       this.appdata = appdata;
       this.item = new ItemModel();
-      this.item.customSetItem(result);
+      this.item.customSetItem(appdata, result);
       this.targetContactId = targetContactId;
     },
 

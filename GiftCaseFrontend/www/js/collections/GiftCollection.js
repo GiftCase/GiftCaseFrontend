@@ -73,6 +73,7 @@ define(function(require) {
 	    	var self = this;
 			return this.fetch({
 	    		success: function () {
+	    			console.log(self.models.length);
 	    			self.triggerAppropriateEvent();
 	        	},
 	        	error: function (model, xhr, options) {

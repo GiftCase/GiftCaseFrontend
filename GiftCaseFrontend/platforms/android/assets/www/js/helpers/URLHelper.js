@@ -16,6 +16,16 @@ define(function(require) {
 		logoutRoot: "/Logout",
 		invitationRoot: "/SendInvitation",
 		sendGiftRoot: "/SendGift",
+		downloadGiftRoot: "/DownloadGift",
+
+		downloadGift: function(giftId, userId)
+		{
+			var url = this.urlRoot + this.giftsRoot + this.downloadGiftRoot + "?giftId=" + giftId +
+				"&userId=" + userId;
+
+			console.log("Request " + url);
+			return url;
+		},
 
 		sendGift: function(itemId, storeName, userId, contactId)
 		{

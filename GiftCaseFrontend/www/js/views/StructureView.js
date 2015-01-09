@@ -17,7 +17,8 @@ define(function(require) {
       "touchend #nav2": "eventsview",
       "touchend #nav3": "giftbox",
       "touchend #logoutbutton": "logout",
-      "touchend #closebutton": "close"
+      "touchend #closebutton": "close",
+      "touchend #nav4": "settings"
     },
 
     initialize: function(options) {
@@ -93,6 +94,11 @@ define(function(require) {
       Backbone.history.navigate("eventsview", {
         trigger: true
       });
+
+      $(".settingIcon").removeClass("active");
+      $(".giftBoxIcon").removeClass("active");
+      $(".eventsIcon").addClass("active");
+      $(".contactsIcon").removeClass("active");
     },
 
     contacts: function(event) {
@@ -102,15 +108,26 @@ define(function(require) {
       Backbone.history.navigate("contacts", {
         trigger: true
       });
+
+      $(".settingIcon").removeClass("active");
+      $(".giftBoxIcon").removeClass("active");
+      $(".eventsIcon").removeClass("active");
+      $(".contactsIcon").addClass("active");
     },
 
     giftbox: function(event) {
       
       this.removeWelcomeMessage();
+      console.log("giftbox");
 
       Backbone.history.navigate("giftbox", {
         trigger: true
       });
+
+      $(".settingIcon").removeClass("active");
+      $(".giftBoxIcon").addClass("active");
+      $(".eventsIcon").removeClass("active");
+      $(".contactsIcon").removeClass("active");
     },
 
     removeWelcomeMessage: function(){
@@ -124,6 +141,14 @@ define(function(require) {
 
     close: function(){
       document.getElementById("content").click();
+      $(".settingIcon").removeClass("active");
+    },
+
+    settings: function(){
+      $(".settingIcon").addClass("active");
+      $(".giftBoxIcon").removeClass("active");
+      $(".eventsIcon").removeClass("active");
+      $(".contactsIcon").removeClass("active");
     }
   });
 

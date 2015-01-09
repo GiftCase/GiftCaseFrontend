@@ -52,13 +52,16 @@ define(function(require) {
 		getAppropriatePicture : function(type)
 		{
 			if (type == "Anniversary"){
-				return "img/anniversary.png";
+				return "img/anniversaryIcon.png";
 			} 
 			else if(type == "Birthday"){
-				return "img/birthday.png";
+				return "img/presentIcon.png";
+			}
+			else if(type == "Wedding"){
+				return "img/weddingIcon.png";
 			}
 			else if(type == "Graduation"){
-				return "img/graduation.png";
+				return "img/graduationIcon.png";
 			}
 			else
 			{

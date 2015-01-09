@@ -27,8 +27,9 @@ define(function(require) {
 				this.count); 
 		},
 		
-		initialize: function () {
+		initialize: function (options) {
 			var self = this;
+			this.appdata = options.appdata;
 	        this.on("invalid", function (model, error) {
 	            self.errorMessage = "Ups, an error occured during loading gifts";
 	        });
@@ -64,7 +65,7 @@ define(function(require) {
 			var results = $.parseJSON(JSON.stringify(response));
 	     	for (var i = 0; i < results.length; i++) {
 	     		var oneItem = new ItemModel();
-	     		oneItem.customSetItem(results[i]);
+	     		oneItem.customSetItem(this.appdata, results[i]);
 	     		itemsArray[i] = oneItem;	
 	     	}
 	     	return itemsArray;

@@ -22,13 +22,17 @@ define(function(require) {
 		    Director: '',
 		    Platform: '',
 		    Artist: '',
-		    Developer: ''
+		    Developer: '',
+		    Icon: ''
 		},
 		
-		customSetItem : function(itemObject)
+		customSetItem : function(appdata, itemObject)
 		{
 			var category = new CategoryModel();
+
 			category.customSetCategory(itemObject.Category);
+
+			var icon = this.getAppropriatePicture(appdata.getCategoryName(category));
 			this.set({
 				Category: category, 
 				Description: itemObject.Description,
@@ -44,8 +48,26 @@ define(function(require) {
 				Director: itemObject.Director,
 				Platform: itemObject.Platform,
 				Artist: itemObject.Artist,
-				Developer: itemObject.Developer
+				Developer: itemObject.Developer,
+				TypeIcon: icon
 			});
+		},
+
+		getAppropriatePicture : function(type)
+		{ 
+			if(type == "Video"){
+				return "img/movieIcon.png";
+			}
+			else if(type == "Audio"){
+				return "img/musicIcon.png";
+			}
+			else if(type == "Game"){
+				return "img/gameIcon.png";
+			}
+			else
+			{
+				return "";
+			}
 		}
 	});
 

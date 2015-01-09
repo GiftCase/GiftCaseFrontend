@@ -31,7 +31,7 @@ define(function(require) {
 			});
 			receiver.customSetContact(giftObject.UserWhoReceivedTheGift);
 			var item = new ItemModel();
-			item.customSetItem(giftObject.Item);
+			item.customSetItem(this.appdata, giftObject.Item);
 			var date = new Date(giftObject.DateOfPurchase);
 			this.set({
 				DateOfPurchase: date, 

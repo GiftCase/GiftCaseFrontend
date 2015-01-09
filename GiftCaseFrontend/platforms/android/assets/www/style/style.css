@@ -167,3 +167,64 @@ body {
   top: 0;
   bottom: 0;
 }
+
+.contactsIcon.active{
+  height: 100%;
+  content: url('/img/contactsIconActive.png');
+}
+
+.contactsIcon:hover{
+  height: 100%;
+  content: url('/img/contactsIconActive.png');
+}
+
+.contactsIcon{
+  height: 100%;
+  content: url('/img/contactsIconInactive.png');
+}
+
+.eventsIcon.active{
+  height: 100%;
+  content: url('/img/eventsIconActive.png');
+}
+
+.eventsIcon:hover{
+  height: 100%;
+  content: url('/img/eventsIconActive.png');
+}
+
+.eventsIcon{
+  height: 100%;
+  content: url('/img/eventsIconInactive.png');
+}
+
+.giftBoxIcon.active{
+  height: 100%;
+  content: url('/img/giftBoxIconActive.png');
+}
+
+.giftBoxIcon:hover{
+  height: 100%;
+  content: url('/img/giftBoxIconActive.png');
+}
+
+.giftBoxIcon{
+  height: 100%;
+  content: url('/img/giftBoxIconInactive.png');
+}
+
+.settingIcon.active{
+  height: 100%;
+  content: url('/img/settingsIconActive.png');
+}
+
+.settingIcon:hover{
+  height: 100%;
+  content: url('/img/settingsIconActive.png');
+}
+
+.settingIcon{
+  height: 100%;
+  content: url('/img/settingsIconInactive.png');
+}
+
