@@ -52,10 +52,12 @@ define(function(require) {
       this.currentView = undefined;
       this.appdata = options.appData;
       this.initialview();
+      $("#messages").html($("#messages").html() + " before facebook initialize");
       FacebookHelper.initialize(
         {
           appdata: this.appdata
         });
+      $("#messages").html($("#messages").html() + " facebook initialized");
       FacebookHelper.checkUserLoggedInStatus(this.loggedInStatusHandler, this);
       this.appdata.user.DeviceId = window.device.uuid;
       //var pushNotification = window.plugins.pushNotification;
@@ -91,8 +93,18 @@ define(function(require) {
     {
       if (result === FacebookHelper.success)
       {
-        self.listenTo(self.appdata.user, "userDataRead", self.showStructure);
-        self.appdata.user.getUserDetails();
+        FacebookHelper.extractUserData(function(result, self){
+          if (result === FacebookHelper.success)
+          {
+            self.listenTo(self.appdata.user, "userDataRead", self.showStructure);
+            self.appdata.user.getUserDetails();
+          }
+          else
+          {
+            self.loginview();
+            self.loginView.showLoginError();
+          }
+        }, self);
       }
       else
       {

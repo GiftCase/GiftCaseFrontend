@@ -14,8 +14,7 @@ require.config({
     utils: '../lib/utils/utils',
     urlhelper: '../js/helpers/URLHelper',
     collectiontests: '../js/tests/CollectionTests',
-    appdata: '../js/appdata',
-    facebook: 'http://connect.facebook.net/en_US/all'
+    appdata: '../js/appdata'
   },
   shim: {
     'jquery': {
@@ -29,9 +28,6 @@ require.config({
     },
     'leaflet': {
       exports: 'L'
-    },
-    'facebook' : {
-      exports: 'FB'
     }
   }
 });
