@@ -40,7 +40,7 @@ var openFB = (function () {
     console.log(logoutRedirectURL);
 
     document.addEventListener("deviceready", function () {
-        runningInCordova = false;
+        runningInCordova = true;
     }, false);
 
     /**
