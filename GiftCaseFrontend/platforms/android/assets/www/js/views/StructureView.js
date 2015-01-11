@@ -99,10 +99,10 @@ define(function(require) {
 
     eventsview: function(event) {
 
-      $("#settingIcon").attr("src", "/img/settingsIconInactive.png");
-      $("#giftBoxIcon").attr("src", "/img/giftBoxIconInactive.png");
-      $("#eventsIcon").attr("src", "/img/eventsIconActive.png");
-      $("#contactsIcon").attr("src", "/img/contactsIconInactive.png");
+      $("#settingIcon").attr("src", "img/settingsIconInactive.png");
+      $("#giftBoxIcon").attr("src", "img/giftBoxIconInactive.png");
+      $("#eventsIcon").attr("src", "img/eventsIconActive.png");
+      $("#contactsIcon").attr("src", "img/contactsIconInactive.png");
       this.removeWelcomeMessage();
       Backbone.history.navigate("eventsview", {
         trigger: true
@@ -111,10 +111,10 @@ define(function(require) {
 
     contacts: function(event) {
       console.log($("#contactsIcon"));
-      $("#settingIcon").attr("src", "/img/settingsIconInactive.png");
-      $("#giftBoxIcon").attr("src", "/img/giftBoxIconInactive.png");
-      $("#eventsIcon").attr("src", "/img/eventsIconInactive.png");
-      $("#contactsIcon").attr("src", "/img/contactsIconActive.png");
+      $("#settingIcon").attr("src", "img/settingsIconInactive.png");
+      $("#giftBoxIcon").attr("src", "img/giftBoxIconInactive.png");
+      $("#eventsIcon").attr("src", "img/eventsIconInactive.png");
+      $("#contactsIcon").attr("src", "img/contactsIconActive.png");
       this.removeWelcomeMessage();
       Backbone.history.navigate("contacts", {
         trigger: true
@@ -123,10 +123,10 @@ define(function(require) {
 
     giftbox: function(event) {
 
-      $("#settingIcon").attr("src", "/img/settingsIconInactive.png");
-      $("#giftBoxIcon").attr("src", "/img/giftBoxIconActive.png");
-      $("#eventsIcon").attr("src", "/img/eventsIconInactive.png");
-      $("#contactsIcon").attr("src", "/img/contactsIconInactive.png");
+      $("#settingIcon").attr("src", "img/settingsIconInactive.png");
+      $("#giftBoxIcon").attr("src", "img/giftBoxIconActive.png");
+      $("#eventsIcon").attr("src", "img/eventsIconInactive.png");
+      $("#contactsIcon").attr("src", "img/contactsIconInactive.png");
       this.removeWelcomeMessage();
       Backbone.history.navigate("giftbox", {
         trigger: true
@@ -145,14 +145,14 @@ define(function(require) {
 
     close: function(){
       document.getElementById("content").click();
-      $("#settingIcon").attr("src", "/img/settingsIconInactive.png");
+      $("#settingIcon").attr("src", "img/settingsIconInactive.png");
     },
 
     settings: function(){
-      $("#settingIcon").attr("src", "/img/settingsIconActive.png");
-      $("#giftBoxIcon").attr("src", "/img/giftBoxIconInactive.png");
-      $("#eventsIcon").attr("src", "/img/eventsIconInactive.png");
-      $("#contactsIcon").attr("src", "/img/contactsIconInactive.png");
+      $("#settingIcon").attr("src", "img/settingsIconActive.png");
+      $("#giftBoxIcon").attr("src", "img/giftBoxIconInactive.png");
+      $("#eventsIcon").attr("src", "img/eventsIconInactive.png");
+      $("#contactsIcon").attr("src", "img/contactsIconInactive.png");
     }
   });
 
