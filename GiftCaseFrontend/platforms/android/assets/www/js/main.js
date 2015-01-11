@@ -14,7 +14,8 @@ require.config({
     utils: '../lib/utils/utils',
     urlhelper: '../js/helpers/URLHelper',
     collectiontests: '../js/tests/CollectionTests',
-    appdata: '../js/appdata'
+    appdata: '../js/appdata',
+    facebook: ''
   },
   shim: {
     'jquery': {

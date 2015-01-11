@@ -168,7 +168,7 @@ body {
   bottom: 0;
 }
 
-.contactsIcon.active{
+/*.contactsIcon.active{
   height: 100%;
   content: url('/img/contactsIconActive.png');
 }
@@ -226,5 +226,9 @@ body {
 .settingIcon{
   height: 100%;
   content: url('/img/settingsIconInactive.png');
+}*/
+
+.menuIcon{
+  height: 100%;
 }
 

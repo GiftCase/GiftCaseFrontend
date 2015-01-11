@@ -60,6 +60,7 @@ define(function(require) {
 
 		giftCaseContacts: function(userId)
 		{
+			
 			console.log("Request " + this.urlRoot + this.userRoot + this.giftCaseUsersRoot + '?userId=' + userId);
 			return this.urlRoot + this.userRoot + this.giftCaseUsersRoot + '?userId=' + userId;
 		},
@@ -124,6 +125,7 @@ define(function(require) {
 				resultingURL = resultingURL + "&count=" + count;
 			}
 			
+			alert("suggestedGifts " + resultingURL);
 			console.log("Request " + resultingURL);
 			return resultingURL;
 		}

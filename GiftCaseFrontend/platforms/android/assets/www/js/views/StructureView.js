@@ -25,6 +25,7 @@ define(function(require) {
       // load the precompiled template
       this.template = Utils.templates.structure;
       this.appdata = options.appdata;
+      this.welcomeMessageShown = true;
       //this.on("inTheDOM", this.rendered);
       // bind the back event to the goBack function
       //document.getElementById("back").addEventListener("back", this.goBack(), false);
@@ -54,7 +55,15 @@ define(function(require) {
       this.el.innerHTML = this.template({});
       // cache a reference to the content element
       this.contentElement = this.$el.find('#content')[0];
+
+      if(this.welcomeMessageShown){
+        this.addHelloMessage();
+      }
       
+      return this;
+    },
+
+    addHelloMessage: function(){
       if (this.appdata.user.get('Gender') !== undefined)
       {
         var gender;
@@ -67,8 +76,8 @@ define(function(require) {
           gender = "Mrs.";
         }
         this.$el.find('#welcomemessage').html("Welcome, " + gender + " " + this.appdata.user.get('Name'));
+        this.welcomeMessageShown = true;
       }
-      return this;
     },
 
     // rendered: function(e) {
@@ -89,45 +98,39 @@ define(function(require) {
     },
 
     eventsview: function(event) {
+
+      $("#settingIcon").attr("src", "/img/settingsIconInactive.png");
+      $("#giftBoxIcon").attr("src", "/img/giftBoxIconInactive.png");
+      $("#eventsIcon").attr("src", "/img/eventsIconActive.png");
+      $("#contactsIcon").attr("src", "/img/contactsIconInactive.png");
       this.removeWelcomeMessage();
-      
       Backbone.history.navigate("eventsview", {
         trigger: true
       });
-
-      $(".settingIcon").removeClass("active");
-      $(".giftBoxIcon").removeClass("active");
-      $(".eventsIcon").addClass("active");
-      $(".contactsIcon").removeClass("active");
     },
 
     contacts: function(event) {
-      
+      console.log($("#contactsIcon"));
+      $("#settingIcon").attr("src", "/img/settingsIconInactive.png");
+      $("#giftBoxIcon").attr("src", "/img/giftBoxIconInactive.png");
+      $("#eventsIcon").attr("src", "/img/eventsIconInactive.png");
+      $("#contactsIcon").attr("src", "/img/contactsIconActive.png");
       this.removeWelcomeMessage();
-
       Backbone.history.navigate("contacts", {
         trigger: true
       });
-
-      $(".settingIcon").removeClass("active");
-      $(".giftBoxIcon").removeClass("active");
-      $(".eventsIcon").removeClass("active");
-      $(".contactsIcon").addClass("active");
     },
 
     giftbox: function(event) {
-      
-      this.removeWelcomeMessage();
-      console.log("giftbox");
 
+      $("#settingIcon").attr("src", "/img/settingsIconInactive.png");
+      $("#giftBoxIcon").attr("src", "/img/giftBoxIconActive.png");
+      $("#eventsIcon").attr("src", "/img/eventsIconInactive.png");
+      $("#contactsIcon").attr("src", "/img/contactsIconInactive.png");
+      this.removeWelcomeMessage();
       Backbone.history.navigate("giftbox", {
         trigger: true
       });
-
-      $(".settingIcon").removeClass("active");
-      $(".giftBoxIcon").addClass("active");
-      $(".eventsIcon").removeClass("active");
-      $(".contactsIcon").removeClass("active");
     },
 
     removeWelcomeMessage: function(){
@@ -136,19 +139,20 @@ define(function(require) {
       {
         var content = document.getElementById("content");
         content.removeChild(welcomemessage);
+        this.welcomeMessageShown = false;
       }
     },
 
     close: function(){
       document.getElementById("content").click();
-      $(".settingIcon").removeClass("active");
+      $("#settingIcon").attr("src", "/img/settingsIconInactive.png");
     },
 
     settings: function(){
-      $(".settingIcon").addClass("active");
-      $(".giftBoxIcon").removeClass("active");
-      $(".eventsIcon").removeClass("active");
-      $(".contactsIcon").removeClass("active");
+      $("#settingIcon").attr("src", "/img/settingsIconActive.png");
+      $("#giftBoxIcon").attr("src", "/img/giftBoxIconInactive.png");
+      $("#eventsIcon").attr("src", "/img/eventsIconInactive.png");
+      $("#contactsIcon").attr("src", "/img/contactsIconInactive.png");
     }
   });
 

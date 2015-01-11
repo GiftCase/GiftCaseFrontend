@@ -52,6 +52,7 @@ define(function(require) {
       this.currentView = undefined;
       this.appdata = options.appData;
       this.initialview();
+      this.appdata.user.DeviceId = window.device.uuid;
       $("#messages").html($("#messages").html() + " before facebook initialize");
       FacebookHelper.initialize(
         {
@@ -59,7 +60,6 @@ define(function(require) {
         });
       $("#messages").html($("#messages").html() + " facebook initialized");
       FacebookHelper.checkUserLoggedInStatus(this.loggedInStatusHandler, this);
-      this.appdata.user.DeviceId = window.device.uuid;
       //var pushNotification = window.plugins.pushNotification;
       //pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"62557057858","ecb":"this.onNotificationGCM"});
     },
@@ -93,18 +93,24 @@ define(function(require) {
     {
       if (result === FacebookHelper.success)
       {
+        $("#messages").html($("#messages").html() + " logged in, get user data");
         FacebookHelper.extractUserData(function(result, self){
           if (result === FacebookHelper.success)
           {
-            self.listenTo(self.appdata.user, "userDataRead", self.showStructure);
+            $("#messages").html($("#messages").html() + " extracted data get data from backend");
+            self.listenTo(self.appdata.user, "userDataRead", self.userDataExtractedHandler);
             self.appdata.user.getUserDetails();
           }
           else
           {
+            $("#messages").html($("#messages").html() + " not extracted data");
             self.loginview();
             self.loginView.showLoginError();
           }
         }, self);
+        /*console.log("loggedInStatusHandler");
+        self.listenTo(self.appdata.user, "userDataRead", self.userDataExtractedHandler);
+        self.appdata.user.getUserDetails();*/
       }
       else
       {
@@ -114,6 +120,15 @@ define(function(require) {
           self.loginView.showPermissionsError();
         }
       }
+    },
+
+    userDataExtractedHandler: function(){
+      if(this.appdata.user.errorMessage !== "")
+      {
+        this.loginview();
+        this.loginView.showLoginError();
+      }
+      this.showStructure();
     },
 
     initialview: function() {

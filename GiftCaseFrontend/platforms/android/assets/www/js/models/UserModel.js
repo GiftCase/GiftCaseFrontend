@@ -11,6 +11,7 @@ define(function(require) {
 		DeviceId:"notinitialized",
 		FacebookAccessToken: "notinitialized",
 		Id: "notinitialized",
+		Name:"",
 
 		url: function(){
 			return URLHelper.userLogin(this.Id, this.FacebookAccessToken, this.DeviceId);
@@ -31,12 +32,22 @@ define(function(require) {
 
 	    getUserDetails : function(){
 	    	var self = this;
+	    	console.log(this);
+	    	console.log(this.Id + " " + this.FacebookAccessToken + " " + self.DeviceId);
 			return this.fetch({
-	    		success: function () {
+	    		success: function (response) {
+	    			if (response.get('ExtendedToken') === "" || 
+	    				response.get('ExtendedToken') === undefined ||
+	    				response.get('ExtendedToken') === null)
+	    			{
+	    				self.errorMessage = "Ups, an error occured during extracting data for user";
+	    			}
+	    			console.log(self);
 	    			self.trigger("userDataRead");
 	        	},
 	        	error: function (model, xhr, options) {
 	        		self.errorMessage = "Ups, an error occured during extracting data for user";
+	        		self.trigger("userDataRead");
         		}
     		});
 		},

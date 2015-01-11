@@ -65,7 +65,13 @@ define(function(require) {
             self.loginError = "Error in getting user information. Please try to log in again.";
             document.getElementById("loginError").innerHTML = loginError;
           }
-        }, self);      
+        }, self); 
+        /*self.listenTo(self.appdata.user, "userDataRead", function(){
+              Backbone.history.navigate("showstructure", {
+                trigger: true
+              });
+            });
+        self.appdata.user.getUserDetails();*/    
       }
       else if (loginResult === FacebookHelper.permissions)
       {

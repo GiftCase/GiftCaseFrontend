@@ -16,6 +16,7 @@ define(function() {
 		{
 			this.appdata = options.appdata;
 			openFB.init({appId: '878246272199421'});
+
 		},
 
 		checkUserLoggedInStatus: function(checkUserStatusHandler, caller)
@@ -26,14 +27,21 @@ define(function() {
 		        {
 		        	$("#messages").html($("#messages").html() + " user status connected");
 		        	console.log("user status received, connected, check permissions");
+		        	self.appdata.user.FacebookAccessToken = loginStatus.authResponse.token;
 		        	openFB.api({path: '/me/permissions', success: 
 		        		function(response){
+		        			$("#messages").html($("#messages").html() + " permissions got");
+		        			$("#messages").html($("#messages").html() + " " + JSON.stringify(response));
 		        			self.handleSuccessPermissions(self, checkUserStatusHandler, caller, response);
 		        		}, error: function(error){
+		        			console.log("hereee");
 		        			self.handleErrorPermissions(self, checkUserStatusHandler, caller, error);
 		        		}});
-
-		        	self.appdata.user.FacebookAccessToken = loginStatus.authResponse.token;
+	    			/*console.log("User logged in");
+	    			self.appdata.user.FacebookAccessToken = loginStatus.authResponse.token;
+		        	self.appdata.user.Id = '10204523203015435';//loginStatus.authResponse.token;
+		        	console.log(self.appdata.user.FacebookAccessToken + " " + self.appdata.user.Id);
+		        	checkUserStatusHandler(self.success, caller);*/
 		        }
 		        else {
 		        	$("#messages").html($("#messages").html() + " user status not connected");
@@ -49,17 +57,19 @@ define(function() {
 	    	var self = this;
 	    	openFB.api({path: '/me', success: 
         		function(response){
-        			console.log(response);
         			//read facebook id
         			$("#messages").html($("#messages").html() + " extract user data success");
         			console.log("extract user data success");
+        			$("#messages").html($("#messages").html() + " " + response.id);
+        			$("#messages").html($("#messages").html() + " " + response.name);
+        			self.appdata.user.Id = response.id;
+        			self.appdata.user.Name = response.name;
         			extractUserDataHandler(self.success, caller);
         		}, error: function(error){
         			$("#messages").html($("#messages").html() + " extract user data failure");
         			console.log("extract user data failure");
         			extractUserDataHandler(self.failure, caller);
         		}});
-	    	self.appdata.user.Id = response.authResponse.userID;
 	    },
 
 	    handleSuccessPermissions: function(self, checkUserStatusHandler, caller, response)
