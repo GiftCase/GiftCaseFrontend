@@ -19,11 +19,9 @@ define(function(require) {
       onegift = onegift.replace(/\\sl/g,"/").replace(/\\questionmark/g,"?");
       var result = $.parseJSON(onegift);
       this.appdata = appdata;
-      this.model = new GiftModel({
-        appdata: this.appdata
-      });
-      console.log(this.model);
-      this.model.customSetGift(result);
+      this.model = new GiftModel();
+      //console.log(this.model);
+      this.model.customSetGift(result, appdata);
       this.type = typePar;
       if (this.type === "Inbox")
       {
@@ -75,17 +73,32 @@ define(function(require) {
     downloadGift: function()
     {
       var self = this;
-      $.get(URLHelper.downloadGift(this.model.get('Item').get('Id'), this.appdata.user.Id), 
+      $.get(URLHelper.downloadGift(this.model.get('Id'), this.appdata.user.Id), 
         function(data) {
           if (data === false)
           {
             $('#downloadgiftresult').html("An error has occured during downloading of gift");
           }
-          $('#downloadgiftresult').html("The process of dowloading the gift has successfully started");
+          else{
+            $('#downloadgiftresult').html("The process of dowloading the gift has successfully started");
+          }
         }, 'json').error(
           function() {
           $('#downloadgiftresult').html("An error has occured during downloading of gift");
       });
+
+      //if (this.model.get('Status') !== "Claimed")
+      //{
+        $.get(URLHelper.claimGift(this.model.get('Id'), this.appdata.user.Id), 
+          function(data) {
+            //console.log("successfully claimed");
+          }, 'json').error(
+            function() {
+            //console.log("error while claiming");
+        });
+        this.model.set({'Status':"Claimed"});
+        //console.log(this.model);
+      //}
     }
   });
 

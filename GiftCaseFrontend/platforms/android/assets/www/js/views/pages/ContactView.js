@@ -23,7 +23,7 @@ define(function(require) {
       // here we can register to inTheDOM or removing events
       // this.listenTo(this, "inTheDOM", function() {
       //   $('#content').on("swipe", function(data){
-      //     console.log(data);
+      //     //console.log(data);
       //   });
       // });
       // this.listenTo(this, "removing", functionName);

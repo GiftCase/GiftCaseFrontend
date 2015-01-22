@@ -19,11 +19,13 @@ define(function(require) {
         main.insertBefore(elements[0], content);
 
         $(document.getElementById("Inbox")).on("tap",function(){
+          //alert("tap inbox");
           Backbone.history.navigate("inbox", {
             trigger: true
           });
         });
         $(document.getElementById("Outbox")).on("tap",function(){
+          //alert("tap outbox");
           Backbone.history.navigate("outbox", {
             trigger: true
           });

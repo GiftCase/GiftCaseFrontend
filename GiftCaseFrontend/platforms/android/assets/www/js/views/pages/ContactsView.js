@@ -32,6 +32,7 @@ define(function(require) {
 
     render: function() {
 
+      console.log(this.template);
       var self = this;
 
       var $newEl = $(this.template());

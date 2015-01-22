@@ -36,8 +36,8 @@ var openFB = (function () {
         // Used in the exit event handler to identify if the login has already been processed elsewhere (in the oauthCallback function)
         loginProcessed;
 
-    console.log(oauthRedirectURL);
-    console.log(logoutRedirectURL);
+    //console.log(oauthRedirectURL);
+    //console.log(logoutRedirectURL);
 
     document.addEventListener("deviceready", function () {
         runningInCordova = true;
@@ -107,7 +107,7 @@ var openFB = (function () {
                 setTimeout(function () {
                     loginWindow.close();
                 }, timeout > 0 ? timeout : 0);
-				console.log(url);
+				//console.log(url);
                 oauthCallback(url);
             }
         }
@@ -135,7 +135,7 @@ var openFB = (function () {
         }
 
         startTime = new Date().getTime();
-		console.log(location.href);
+		//console.log(location.href);
         loginWindow = window.open(FB_LOGIN_URL + '?client_id=' + fbAppId + '&redirect_uri=' + oauthRedirectURL +
             '&response_type=token&scope=' + scope, '_blank', 'location=no');
 
@@ -156,7 +156,7 @@ var openFB = (function () {
      * OAuth workflow.
      */
     function oauthCallback(url) {
-		alert(url);
+		//alert(url);
         // Parse the OAuth data received from Facebook
         var queryString,
             obj;

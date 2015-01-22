@@ -33,7 +33,7 @@ define(function(require) {
     render: function() {
 
       var self = this;
-      console.log(this.appdata);
+      //console.log(this.appdata);
       var itemPresenter = new ItemPresenter(this.model, this.appdata);
       var json = this.model.toJSON();
       json = itemPresenter.BuildJSON(json);

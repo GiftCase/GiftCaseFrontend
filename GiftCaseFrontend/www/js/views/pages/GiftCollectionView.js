@@ -11,6 +11,7 @@ define(function(require) {
     constructorName: "GiftCollectionView",
 
     initialize: function(options) {
+      //alert("make gift collection view");
       var options = options ? options : {};
       this.appdata = options.appdata;
       this.template = Utils.templates.giftCollectionList;
@@ -22,7 +23,8 @@ define(function(require) {
       {
         case "Outbox": this.listenTo(this.collection, "showOutbox", this.render);break;
         case "Inbox": this.listenTo(this.collection, "showInbox", this.render);break;
-      }  
+      } 
+      //alert("events registered"); 
       this.collection.setUserId(options.UserId);
       this.collection.setListStart(options.Start);
       this.collection.setListEnd(options.End);
@@ -31,6 +33,8 @@ define(function(require) {
 
     render: function() {
 
+      //alert("rendering gift collection");
+      $("#messages").html($("#messages").html() + " rendering gift collection");
       var self = this;
 
       var $newEl = $(this.template());
@@ -63,6 +67,8 @@ define(function(require) {
         }, this);
         this.$el.find('#errorContactsList').hide();
       }
+      //alert("end rendering");
+      $("#messages").html($("#messages").html() + " end rendering");
 
       return this;
     }

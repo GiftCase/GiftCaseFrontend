@@ -8,6 +8,7 @@ define(function(require) {
   {
     this.user = new UserModel();
     this.categoriesInitialized = false;
+    this.countOfRecords = 15;
     this.initializeCategories();
     this.invitationEmailText = "I propose you to use the GiftCase application. It is very nice!";
   };
@@ -84,7 +85,7 @@ define(function(require) {
       {
         if (category.get('Name') === categoryName)
         {
-          console.log(category);
+          //console.log(category);
           return category;
         }
       });

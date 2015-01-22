@@ -45,38 +45,43 @@ define(function(require) {
       if (loginResult === FacebookHelper.success)
       {
         $("#messages").html($("#messages").html() + " successfull login, extract facebook user data");
-        console.log("successfull login, extract facebook user data");
+        //console.log("successfull login, extract facebook user data");
         FacebookHelper.extractUserData(function(result, self){
           if (result === FacebookHelper.success){
             $("#messages").html($("#messages").html() + " successfull extract user facebook data");
-            console.log("successfull extract user facebook data");
-            self.listenTo(self.appdata.user, "userDataRead", function(){
-              Backbone.history.navigate("showstructure", {
-                trigger: true
-              });
+            //console.log("successfull extract user facebook data");
+            self.listenTo(self.appdata.user, "loginDataRead", function(){
+              if(this.appdata.user.errorMessage !== "")
+              {
+                //alert("error during reading user data");
+                self.$el.find("#loginButton").attr('src', "img/loginInactive.png");
+                self.loginError = "Error in granted permissions. Please try to log in again.";
+                document.getElementById("loginError").innerHTML = self.loginError;
+              }
+              else
+              {
+                //alert(" user logged in read" + self.appdata.user.get("FacebookAccessToken"));
+                Backbone.history.navigate("showstructure", {
+                  trigger: true
+                });
+              }
             });
-            self.appdata.user.getUserDetails();
+            self.appdata.user.login();
           }
           else
           {
             $("#messages").html($("#messages").html() + " error extract user facebook data");
-            console.log("error extract user facebook data");
+            //console.log("error extract user facebook data");
             self.$el.find("#loginButton").attr('src', "img/loginInactive.png");
             self.loginError = "Error in getting user information. Please try to log in again.";
             document.getElementById("loginError").innerHTML = loginError;
           }
-        }, self); 
-        /*self.listenTo(self.appdata.user, "userDataRead", function(){
-              Backbone.history.navigate("showstructure", {
-                trigger: true
-              });
-            });
-        self.appdata.user.getUserDetails();*/    
+        }, self);    
       }
       else if (loginResult === FacebookHelper.permissions)
       {
          $("#messages").html($("#messages").html() + " permissions not granted");
-        console.log("Permissions not granted");
+        //console.log("Permissions not granted");
         self.$el.find("#loginButton").attr('src', "img/loginInactive.png");
         self.loginError = "Error in granted permissions. Please try to log in again.";
         document.getElementById("loginError").innerHTML = self.loginError;
@@ -84,12 +89,12 @@ define(function(require) {
       else if (loginResult === FacebookHelper.notlogged || loginResult === FacebookHelper.failure)
       {
         $("#messages").html($("#messages").html() + " failure in login");
-        console.log("User not logged in");
+        //console.log("User not logged in");
         self.$el.find("#loginButton").attr('src', "img/loginInactive.png");
         self.loginError = "Error while logging in. Please try to log in again.";
         document.getElementById("loginError").innerHTML = self.loginError;
       } 
-    },
+    }/*,
 
     showPermissionsError: function()
     {
@@ -101,7 +106,7 @@ define(function(require) {
     {
       loginError = "Error in getting user information. Please try to log in again.";
       document.getElementById("loginError").innerHTML = loginError;
-    }
+    }*/
   });
 
   return LoginView;

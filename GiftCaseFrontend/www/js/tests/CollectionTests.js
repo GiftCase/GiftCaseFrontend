@@ -14,7 +14,7 @@ define(function(require) {
 			this.receivedGiftCollection.setListStart(0);
 			this.receivedGiftCollection.setListEnd(3);
 			this.receivedGiftCollection.on("showInbox", this.showInbox, this);
-			console.log("Request inbox");
+			//console.log("Request inbox");
 			this.receivedGiftCollection.getGifts();*/
 
 			/*this.suggestedGiftCollection = new ItemCollection();
@@ -22,27 +22,27 @@ define(function(require) {
 			this.suggestedGiftCollection.setCategory(3);
 			this.suggestedGiftCollection.setCount(2);
 			this.suggestedGiftCollection.on("showItems", this.showSuggested, this);
-			console.log("Request count + category");
+			//console.log("Request count + category");
 			this.suggestedGiftCollection.getItems();
 
 			this.suggestedGiftCollection1 = new ItemCollection();
 			this.suggestedGiftCollection1.setTargetContact("ana");
 			this.suggestedGiftCollection1.setCategory(4);
 			this.suggestedGiftCollection1.on("showItems", this.showSuggested1, this);
-			console.log("Request category");
+			//console.log("Request category");
 			this.suggestedGiftCollection1.getItems();
 
 			this.suggestedGiftCollection3 = new ItemCollection();
 			this.suggestedGiftCollection3.setTargetContact("ana");
 			this.suggestedGiftCollection3.setCount(3);
 			this.suggestedGiftCollection3.on("showItems", this.showSuggested3, this);
-			console.log("Request count");
+			//console.log("Request count");
 			this.suggestedGiftCollection3.getItems();
 
 			this.suggestedGiftCollection2 = new ItemCollection();
 			this.suggestedGiftCollection2.setTargetContact("ana");
 			this.suggestedGiftCollection2.on("showItems", this.showSuggested2, this);
-			console.log("Request userName");
+			//console.log("Request userName");
 			this.suggestedGiftCollection2.getItems();*/
 
 			/*this.sentGiftCollection = new GiftCollection();
@@ -51,49 +51,49 @@ define(function(require) {
 			this.sentGiftCollection.setListStart(0);
 			this.sentGiftCollection.setListEnd(3);
 			this.sentGiftCollection.on("showOutbox", this.showOutbox, this);
-			console.log("Request outbox");
+			//console.log("Request outbox");
 			this.sentGiftCollection.getGifts();*/
 		},
 
 		showInbox:function()
 		{
-			console.log("Print inbox " + this.receivedGiftCollection.length);
+			//console.log("Print inbox " + this.receivedGiftCollection.length);
 			this.printGifts(this.receivedGiftCollection);
 		},
 
 		showOutbox:function()
 		{
-			console.log("Print outbox " + this.sentGiftCollection.length);
+			//console.log("Print outbox " + this.sentGiftCollection.length);
 			this.printGifts(this.sentGiftCollection);
 		},
 
 		showSuggested:function()
 		{
-			console.log("Print suggested gifts all conditions " + this.suggestedGiftCollection.length);
+			//console.log("Print suggested gifts all conditions " + this.suggestedGiftCollection.length);
 			this.printItems(this.suggestedGiftCollection);
 		},
 
 		showSuggested1:function()
 		{
-			console.log("Print suggested gifts name + category " + this.suggestedGiftCollection1.length);
+			//console.log("Print suggested gifts name + category " + this.suggestedGiftCollection1.length);
 			this.printItems(this.suggestedGiftCollection1);
 		},
 
 		showSuggested2:function()
 		{
-			console.log("Print suggested gifts name " + this.suggestedGiftCollection2.length);
+			//console.log("Print suggested gifts name " + this.suggestedGiftCollection2.length);
 			this.printItems(this.suggestedGiftCollection2);
 		},
 
 		showSuggested3:function()
 		{
-			console.log("Print suggested gifts name + count " + this.suggestedGiftCollection3.length);
+			//console.log("Print suggested gifts name + count " + this.suggestedGiftCollection3.length);
 			this.printItems(this.suggestedGiftCollection3);
 		},
 
 		printGifts:function(giftsCollection)
 		{
-			giftsCollection.each(function(gift){
+			/*giftsCollection.each(function(gift){
 	        	console.log("DateOfPurchase " + gift.get('DateOfPurchase') + 
 	        		"Status " + gift.get('Status') + 
 	        		"Item Category " + gift.get('Item').get('Category') + 
@@ -122,13 +122,13 @@ define(function(require) {
 	        		"Receiver Gender " + gift.get('UserWhoReceivedTheGift').get('Gender') +
 	        		"Receiver Id " + gift.get('UserWhoReceivedTheGift').get('Id')
 	        		);
-	        }, this);
+	        }, this);*/
 		},
 
 		printItems:function(itemsCollection)
 		{
-			itemsCollection.each(function(gift){
-	        	console.log("Item Category " + gift.get('Category') + 
+			/*itemsCollection.each(function(gift){
+	        	//console.log("Item Category " + gift.get('Category') + 
 	        		"Item Description " + gift.get('Description') +
 	        		"Item Id " + gift.get('Id') +
 	        		"Item LinkToTheStore " + gift.get('LinkToTheStore') +
@@ -142,7 +142,7 @@ define(function(require) {
 	        		"Item Platform " + gift.get('Platform') + 
 	        		"Item Artist " + gift.get('Artist')
 	        		);
-	        }, this);
+	        }, this);*/
 		}
   	};
 

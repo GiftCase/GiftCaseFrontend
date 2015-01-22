@@ -64,7 +64,7 @@ var app = {
             case 'registered':
                 if ( e.regid.length > 0 )
                 {
-                    console.log("Regid " + e.regid);
+                    //console.log("Regid " + e.regid);
                     alert('registration id = '+e.regid);
                 }
             break;

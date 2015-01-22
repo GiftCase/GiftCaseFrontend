@@ -1661,19 +1661,19 @@
     },
     
     destroy: function (model, success, error, options) {
-      //console.log("sql destroy");
+      ////console.log("sql destroy");
       var id = (model.attributes[model.idAttribute] || model.attributes.id);
       this._executeSql("DELETE FROM `"+this.tableName+"` WHERE(`id`=?);",[model.attributes[model.idAttribute]],success, error, options);
     },
     
     find: function (model, success, error, options) {
-      //console.log("sql find");
+      ////console.log("sql find");
       var id = (model.attributes[model.idAttribute] || model.attributes.id);
       this._executeSql("SELECT `id`, `value` FROM `"+this.tableName+"` WHERE(`id`=?);",[model.attributes[model.idAttribute]], success, error, options);
     },
     
     findAll: function (model, success, error, options) {
-      //console.log("sql findAll");
+      ////console.log("sql findAll");
       var params = [];
       var sql = "SELECT `id`, `value` FROM `"+this.tableName+"`";
       if (options.filters) {
@@ -1697,7 +1697,7 @@
       if (WebSQLStore.insertOrReplace)
         return this.create(model, success, error, options);
 
-      //console.log("sql update")
+      ////console.log("sql update")
       var id = (model.attributes[model.idAttribute] || model.attributes.id);
 
       var setStmts = ["`value`=?"];
@@ -1716,7 +1716,7 @@
     },
     
     _save: function (model, success, error) {
-      //console.log("sql _save");
+      ////console.log("sql _save");
       var id = (model.attributes[model.idAttribute] || model.attributes.id);
       this.db.transaction(function(tx) {
         tx.executeSql("");
@@ -1725,7 +1725,7 @@
     
     _executeSql: function (SQL, params, successCallback, errorCallback, options) {
       var success = function(tx,result) {
-        if(WebSQLStore.debug) {console.log(SQL, params, " - finished");}
+        if(WebSQLStore.debug) {//console.log(SQL, params, " - finished");}
         if(successCallback) successCallback(tx,result);
       };
       var error = function(tx,error) {

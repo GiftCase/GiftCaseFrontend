@@ -8,16 +8,17 @@ define(function(require) {
 		constructorName: "UserModel",
 		errorMessage: "",
 
-		DeviceId:"notinitialized",
+		DeviceId: undefined,
 		FacebookAccessToken: "notinitialized",
 		Id: "notinitialized",
 		Name:"",
+		url: "",
 
 		url: function(){
-			return URLHelper.userLogin(this.Id, this.FacebookAccessToken, this.DeviceId);
+			return this.url;
 		},
 		
-		initialize: function () {
+		initialize: function (options) {
 			var self = this;
 	        this.on("invalid", function (model, error) {
 	            self.errorMessage = "Ups, an error occured during creating data for user";
@@ -26,23 +27,56 @@ define(function(require) {
 
         parse: function(response){
 			var results = $.parseJSON(JSON.stringify(response));
-			this.FacebookAccessToken = results.FacebookAccessToken;
 			return results;
 		},
 
-	    getUserDetails : function(){
+	    login : function(){
+	    	this.errorMessage = "";
 	    	var self = this;
-	    	console.log(this);
-	    	console.log(this.Id + " " + this.FacebookAccessToken + " " + self.DeviceId);
+	    	this.url = URLHelper.userLogin(this.Id, this.FacebookAccessToken, this.DeviceId);
+	    	//console.log("login");
+	    	//console.log(this);
+	    	//console.log(this.Id + " " + this.FacebookAccessToken + " " + self.DeviceId);
 			return this.fetch({
 	    		success: function (response) {
-	    			if (response.get('ExtendedToken') === "" || 
-	    				response.get('ExtendedToken') === undefined ||
-	    				response.get('ExtendedToken') === null)
+	    			//alert("login" + response.get('FacebookAccessToken'));
+	    			//console.log("glogin ");
+	    			//console.log(self);
+	    			if (response.get('FacebookAccessToken') === "" || 
+	    				response.get('FacebookAccessToken') === undefined ||
+	    				response.get('FacebookAccessToken') === null)
 	    			{
 	    				self.errorMessage = "Ups, an error occured during extracting data for user";
 	    			}
-	    			console.log(self);
+
+					this.FacebookAccessToken = response.get('FacebookAccessToken');
+	    			self.trigger("loginDataRead");
+	        	},
+	        	error: function (model, xhr, options) {
+	        		self.errorMessage = "Ups, an error occured during extracting data for user";
+	        		self.trigger("loginDataRead");
+        		}
+    		});
+		},
+
+		getUserDetails: function(){
+			this.errorMessage = "";
+			var self = this;
+			this.url = URLHelper.userDetails(this.Id);
+			//alert("getUserDetails " + this.Id + " " + this.FacebookAccessToken + " " + self.DeviceId);
+			//alert(this.url);
+			return this.fetch({
+	    		success: function (response) {
+	    			//alert("getUserDetails" + response.get('FacebookAccessToken'));
+	    			//console.log("get details ");
+	    			//console.log(self);
+	    			if (response.get('FacebookAccessToken') === "" || 
+	    				response.get('FacebookAccessToken') === undefined ||
+	    				response.get('FacebookAccessToken') === null)
+	    			{
+	    				self.errorMessage = "Ups, an error occured during extracting data for user";
+	    			}
+	    			this.FacebookAccessToken = response.get('FacebookAccessToken');
 	    			self.trigger("userDataRead");
 	        	},
 	        	error: function (model, xhr, options) {

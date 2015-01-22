@@ -9,11 +9,17 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "xml": "<feature name=\"PushPlugin\"><param name=\"android-package\" value=\"com.plugin.gcm.PushPlugin\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"PushPlugin\"><param name=\"android-package\" value=\"com.plugin.gcm.PushPlugin\" /></feature>",
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        }
+                    ],
+                    "/widget": [
+                        {
+                            "xml": "<feature name=\"applicationPreferences\"><param name=\"android-package\" value=\"com.simonmacdonald.prefs.AppPreferences\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -70,10 +76,13 @@
         }
     },
     "installed_plugins": {
-        "org.apache.cordova.device": {
+        "com.phonegap.plugins.PushPlugin": {
             "PACKAGE_NAME": "io.cordova.giftcase"
         },
-        "com.phonegap.plugins.PushPlugin": {
+        "com.simonmacdonald.prefs": {
+            "PACKAGE_NAME": "io.cordova.giftcase"
+        },
+        "org.apache.cordova.device": {
             "PACKAGE_NAME": "io.cordova.giftcase"
         }
     },

@@ -80,12 +80,14 @@ define(function(require) {
 		},
 	    
 	    getContacts : function(){
-	    	this.url = URLHelper.giftCaseContacts(this.appdata.user.Id);
+	    	//console.log(this.appdata);
+	    	this.url = URLHelper.giftCaseContacts(this.appdata.user.Id, this.appdata.countOfRecords);
 	    	var self = this;
 			this.fetch({
 	    		success: function () {
 
-	    			self.url = URLHelper.notGiftCaseContacts(self.appdata.user.get('ExtendedToken'));
+					self.trigger("showContacts");
+	    			self.url = URLHelper.notGiftCaseContacts(self.appdata.user.get('FacebookAccessToken'),  self.appdata.countOfRecords);
 
 		    		self.fetch({
 			    		success: function () {

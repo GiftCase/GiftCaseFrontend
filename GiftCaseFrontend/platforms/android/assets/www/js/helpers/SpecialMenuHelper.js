@@ -15,7 +15,7 @@ define(function(require) {
 
 	      //setup categories dropdown
 	      var categories = caller.appdata.getAllCategories();
-	      console.log(categories[0].get('Name'));
+	      //console.log(categories[0].get('Name'));
 	      $("#inputItemCategory").val(categories[0].get('Name'));
 	      for (var i = 0; i < categories.length; i++)
 	      {

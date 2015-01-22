@@ -60,10 +60,8 @@ define(function(require) {
   		  
 			var results = $.parseJSON(JSON.stringify(response));
 	     	for (var i = 0; i < results.length; i++) {
-	     		var oneGift = new GiftModel({
-	     			appdata: this.appdata
-	     		});
-	     		oneGift.customSetGift(results[i]);
+	     		var oneGift = new GiftModel();
+	     		oneGift.customSetGift(results[i], this.appdata);
 	     		giftsArray[i] = oneGift;	
 	     	}
 	     	return giftsArray;
@@ -73,7 +71,9 @@ define(function(require) {
 	    	var self = this;
 			return this.fetch({
 	    		success: function () {
-	    			console.log(self.models.length);
+	    			//alert("gifts aqcuired");
+	    			$("#messages").html($("#messages").html() + " gifts aqcuired");
+	    			//console.log(self.models.length);
 	    			self.triggerAppropriateEvent();
 	        	},
 	        	error: function (model, xhr, options) {
@@ -85,6 +85,8 @@ define(function(require) {
 
 		triggerAppropriateEvent: function()
 		{
+			//alert("triggering appropriate event");
+			$("#messages").html($("#messages").html() + " triggering appropriate event");
 			switch (this.type)
 			{
 				case "Outbox": this.trigger("showOutbox"); break;

@@ -19,10 +19,14 @@ define(function(require) {
   var OneItemView = require("views/pages/OneItemView");
   var InitialView = require("views/pages/InitialView");
   var BuyGiftView = require("views/pages/BuyGiftView");
+  var TestView = require("views/pages/TestView");
 
   //--------------------------------------------------
   var FacebookHelper = require("helpers/FacebookHelper");
   var SpecialMenuHelper = require("helpers/SpecialMenuHelper");
+  var PushNotificationHelper = require("helpers/PushNotificationHelper");
+  var LoginHelper = require("helpers/LoginHelper");
+  var StorageHelper = require("helpers/StorageHelper");
 
   var AppRouter = Backbone.Router.extend({
 
@@ -49,89 +53,79 @@ define(function(require) {
     },
 
     initialize: function(options) {
+      alert("router initialize");
+      var self = this;
       this.currentView = undefined;
       this.appdata = options.appData;
       this.initialview();
-      this.appdata.user.DeviceId = window.device.uuid;
+
       $("#messages").html($("#messages").html() + " before facebook initialize");
       FacebookHelper.initialize(
-        {
-          appdata: this.appdata
-        });
-      $("#messages").html($("#messages").html() + " facebook initialized");
-      FacebookHelper.checkUserLoggedInStatus(this.loggedInStatusHandler, this);
-      //var pushNotification = window.plugins.pushNotification;
-      //pushNotification.register(this.successHandler, this.errorHandler,{"senderID":"62557057858","ecb":"this.onNotificationGCM"});
-    },
-
-    /*myView: function() {
-     
-      // highlight the nav1 tab bar element as the current one
-      // create a model with an arbitrary attribute for testing the template engine
-      var model = new MyModel({
-        key: "ghghgh"
-      });
-      // create the view
-      var page = new MyView({
-        model: model
-      });
-      // show the view
-      this.changePage(page);
-    },
-
-    map: function() {
-      // highlight the nav2 tab bar element as the current one
-      this.structureView.setActiveTabBarElement("nav2");
-      // create the view and show it
-      var page = new MapView();
-      this.changePage(page);
-    },*/
-
-    // load the structure view
-
-    loggedInStatusHandler: function(result, self)
-    {
-      if (result === FacebookHelper.success)
       {
-        $("#messages").html($("#messages").html() + " logged in, get user data");
-        FacebookHelper.extractUserData(function(result, self){
-          if (result === FacebookHelper.success)
-          {
-            $("#messages").html($("#messages").html() + " extracted data get data from backend");
-            self.listenTo(self.appdata.user, "userDataRead", self.userDataExtractedHandler);
-            self.appdata.user.getUserDetails();
-          }
-          else
-          {
-            $("#messages").html($("#messages").html() + " not extracted data");
-            self.loginview();
-            self.loginView.showLoginError();
-          }
-        }, self);
-        /*console.log("loggedInStatusHandler");
-        self.listenTo(self.appdata.user, "userDataRead", self.userDataExtractedHandler);
-        self.appdata.user.getUserDetails();*/
+        appdata: this.appdata
+      });
+
+      /*PushNotificationHelper.init({
+        appdata: this.appdata, 
+        callback: this.pushNotificationsInitialized,
+        messageCallback: this.pushNotificationMessageHandler, 
+        caller: this
+      });*/
+      this.pushNotificationsInitialized("", this);
+    },
+
+    pushNotificationMessageHandler: function(type, message, messageCount, self){
+      //alert(self.appdata);
+      if (type === "error")
+      {
+        //alert("error in receiving message " + message);
+      }
+      else if (type === "success"){
+        //alert(message + " " + messageCount);
       }
       else
       {
-        self.loginview();
-        if (result === FacebookHelper.permissions)
-        {
-          self.loginView.showPermissionsError();
-        }
+        //alert("undefined message type");
       }
     },
 
-    userDataExtractedHandler: function(){
-      if(this.appdata.user.errorMessage !== "")
-      {
-        this.loginview();
-        this.loginView.showLoginError();
-      }
-      this.showStructure();
+    pushNotificationsInitialized: function(data, self){
+      //alert(self.appdata);
+      //console.log(data);
+        if (data !== null && data !== undefined && data !== "")
+        {
+          self.appdata.user.DeviceId = data;
+          StorageHelper.saveTofile("GCMID", data, function (success){
+          //StorageHelper.saveTofileDummy("GCMID", data, function (success){
+              if (success)
+              {
+                //alert("GCMID saved success");
+              }
+              else
+              {
+                //alert("GCMID saved not success");
+              }
+          });
+        }
+        $("#messages").html($("#messages").html() + " self.appdata.user.DeviceId" + self.appdata.user.DeviceId);
+        alert("push notifications initialized " + self.appdata.user.DeviceId);
+        //self.appdata.user.DeviceId = "APA91bEPlFuyW8EyYmMRWFX7jCc7GBFuFO9Q9-TNnqFy__3xFvPAl9JSdaSrjR9MH1KpD1MDPjinJXrm0Wa4cNV5ep7WrbQDyL3izm8a6kNxFxAC6idVFU_skvHRPrrLTcKy24q7DoW8sR_FYclPfgv_En0RCHdh9Q";
+
+        LoginHelper.openApplication(function(view, self){
+          //alert("showing view " + view);
+          if (view === "login")
+          {
+            self.loginview();
+          }
+          else
+          {
+            self.showStructure();
+          }
+        }, self, self.appdata);
     },
 
     initialview: function() {
+      alert("show initial view");
       if (!this.initialView) {
         this.initialView = new InitialView();
         document.body.appendChild(this.initialView.render().el);
@@ -186,7 +180,7 @@ define(function(require) {
       var oneContactView = new OneContactView({
         appdata: this.appdata
       });
-      console.log(onecontact);
+      //console.log(onecontact);
       oneContactView.customInitialize(onecontact);
       this.changePage(oneContactView);
       GiftBoxMenuView.removeGiftBoxMenu();
@@ -224,9 +218,9 @@ define(function(require) {
     showCategories: function(oneevent) {
       for(var i = 0; i < this.categories.length; i++)
       {
-        console.log("Id " + this.categories.at(i).get('Id') + " Name " + 
+        /*console.log("Id " + this.categories.at(i).get('Id') + " Name " + 
           this.categories.at(i).get('Name') + " ParentCategory " + 
-          this.categories.at(i).get('ParentCategory'));
+          this.categories.at(i).get('ParentCategory'));*/
       }
     },
 
@@ -240,6 +234,7 @@ define(function(require) {
     },
 
     inbox: function() {
+      //alert("show inbox");
       SpecialMenuHelper.removeSpecialMenus();
       GiftBoxMenuView.setActiveGiftBoxBarElement("Inbox");
       this.structureView.setActiveTabBarElement("nav3");
@@ -248,7 +243,7 @@ define(function(require) {
           CollectionType: "Inbox",
           UserId: this.appdata.user.Id,
           Start: 0,
-          End: 3,
+          End: this.appdata.countOfRecords,
           appdata: this.appdata
         });
 
@@ -256,6 +251,7 @@ define(function(require) {
     },
 
     outbox: function() {
+      //alert("show outbox");
       SpecialMenuHelper.removeSpecialMenus();
       GiftBoxMenuView.setActiveGiftBoxBarElement("Outbox");
       this.structureView.setActiveTabBarElement("nav3");
@@ -264,7 +260,7 @@ define(function(require) {
           CollectionType: "Outbox",
           UserId: this.appdata.user.Id,
           Start: 0,
-          End: 3,
+          End: this.appdata.countOfRecords,
           appdata: this.appdata
         });
       
@@ -303,40 +299,6 @@ define(function(require) {
       this.changePage(buyGiftView);
       GiftBoxMenuView.removeGiftBoxMenu();
     }
-
-    /*successHandler: function(result) {
-        alert('Callback Success! Result = '+result)
-    },
-
-    errorHandler:function(error) {
-        alert(error);
-    },
-
-    onNotificationGCM: function(e) {
-        switch( e.event )
-        {
-            case 'registered':
-                if ( e.regid.length > 0 )
-                {
-                    console.log("Regid " + e.regid);
-                    alert('registration id = '+e.regid);
-                }
-            break;
- 
-            case 'message':
-              // this is the actual push notification. its format depends on the data model from the push server
-              alert('message = '+e.message+' msgcnt = '+e.msgcnt);
-            break;
- 
-            case 'error':
-              alert('GCM error = '+e.msg);
-            break;
- 
-            default:
-              alert('An unknown GCM event has occurred');
-              break;
-        }
-    }*/
   });
 
   return AppRouter;

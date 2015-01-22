@@ -51,11 +51,11 @@ var app = {
     },
 
     successHandler: function(result) {
-        alert('Callback Success! Result = '+result)
+        //alert('Callback Success! Result = '+result)
     },
 
     errorHandler:function(error) {
-        alert(error);
+        //alert(error);
     }/*,
 
     onNotificationGCM: function(e) {
@@ -64,7 +64,7 @@ var app = {
             case 'registered':
                 if ( e.regid.length > 0 )
                 {
-                    console.log("Regid " + e.regid);
+                    //console.log("Regid " + e.regid);
                     alert('registration id = '+e.regid);
                 }
             break;

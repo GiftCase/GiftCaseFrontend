@@ -45,7 +45,7 @@ define(function(require) {
 			this.get('RelatedContacts').customChangeCollection();
 			this.get('RelatedContacts').each(function(mrun)
 			{
-				console.log(mrun.get('ImageUrl'));
+				//console.log(mrun.get('ImageUrl'));
 			});
 		},
 

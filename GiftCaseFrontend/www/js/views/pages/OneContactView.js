@@ -56,12 +56,12 @@ define(function(require) {
     {
       if (self.model.errorMessage !== '' && self.model.errorMessage !== undefined)
       {
-        console.log(self.model.errorMessage);
+        //console.log(self.model.errorMessage);
         document.getElementById("invitationResult").appendChild(document.createTextNode(self.model.errorMessage));
       }
       else
       {
-        console.log("Invitation sent");
+        //console.log("Invitation sent");
         document.getElementById("invitationResult").appendChild(document.createTextNode("Invitation sent"));
       }
     }

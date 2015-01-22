@@ -47,7 +47,7 @@ define(function(require) {
       {
         $.get(URLHelper.sendGift(this.item.get('Id'), this.item.get('Store'), this.appdata.user.get('Id'), this.targetContactId), 
             function(data) {
-              console.log(data);
+              //console.log(data);
               if (data.Id === "" || data.Id === undefined)
               {
                 $("#giftSendingResult").text("An error has occured during the sending of the present");

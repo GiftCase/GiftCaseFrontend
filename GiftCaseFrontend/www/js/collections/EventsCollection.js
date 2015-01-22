@@ -11,7 +11,7 @@ define(function(require) {
 		userId:"",
 
 		url: function(){
-			return URLHelper.events(this.userId);
+			return URLHelper.events(this.userId, this.appdata.countOfRecords);
 		},
 
 		setUserId: function(userIdPar){
@@ -21,7 +21,7 @@ define(function(require) {
 		initialize: function (options) {
 			this.appdata = options.appdata;
 	        this.on("invalid", function (model, error) {
-	            console.log("Houston, we have a problem: " + error);
+	            //console.log("Houston, we have a problem: " + error);
 	        });
         },
 
@@ -45,7 +45,7 @@ define(function(require) {
 	             	self.trigger("showEvents");
 	        	},
 	        	error: function (model, xhr, options) {
-        			console.log("Something went wrong while getting the events collection");
+        			//console.log("Something went wrong while getting the events collection");
         		}
     		});
 		},

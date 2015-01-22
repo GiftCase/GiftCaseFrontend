@@ -59,7 +59,7 @@
 				}
 			},
 			abort = function(){
-				console.log('src error:' + src);
+				//console.log('src error:' + src);
 				cleanup.call(this);
 
 				self.errors.push(src);
@@ -68,7 +68,7 @@
 				o.pipeline && self.loadNext(index);
 			},
 			load = function(){
-				console.log('src load:' + src);
+				//console.log('src load:' + src);
 				cleanup.call(this);
 
 				// store progress. this === image

@@ -17,6 +17,26 @@ define(function(require) {
 		invitationRoot: "/SendInvitation",
 		sendGiftRoot: "/SendGift",
 		downloadGiftRoot: "/DownloadGift",
+		details: "/Details",
+		updateGiftStatus: "/UpdateGiftStatus",
+		
+		claimGift: function(giftId, userId){
+			var url = this.urlRoot + this.giftsRoot + this.updateGiftStatus + "?giftId=" + giftId + "&userId=" + userId + "&status=" + "Claimed";
+			console.log("Request " + url);
+			return url;
+		},
+
+		receiveGift: function(giftId, userId){
+			var url = this.urlRoot + this.giftsRoot + this.updateGiftStatus + "?giftId=" + giftId + "&userId=" + userId + "&status=" + "Claimed";
+			console.log("Request " + url);
+			return url;
+		},
+
+		userDetails: function(userId){
+			var url = this.urlRoot + this.userRoot + this.details + "?userId=" + userId;
+			console.log("Request " + url);
+			return url;
+		},
 
 		downloadGift: function(giftId, userId)
 		{
@@ -30,7 +50,7 @@ define(function(require) {
 		sendGift: function(itemId, storeName, userId, contactId)
 		{
 			var url = this.urlRoot + this.giftsRoot + this.sendGiftRoot + "?itemId=" + itemId +
-				"&store=" + storeName + "&userId=" + userId + "&contactId=" + contactId;
+				"&store=" + storeName + "&userId=" + contactId + "&contactId=" + userId;
 
 			console.log("Request " + url);
 			return url;
@@ -49,6 +69,7 @@ define(function(require) {
 		userLogin: function(userId, accessToken, deviceToken)
 		{
 			console.log("Request " + this.urlRoot + this.userRoot + this.loginRoot + "?userId=" + userId + "&accessToken=" + accessToken + "&deviceToken=" + deviceToken);
+			//alert(this.urlRoot + this.userRoot + this.loginRoot + "?userId=" + userId + "&accessToken=" + accessToken + "&deviceToken=" + deviceToken);
 			return this.urlRoot + this.userRoot + this.loginRoot + "?userId=" + userId + "&accessToken=" + accessToken + "&deviceToken=" + deviceToken;
 		},
 
@@ -58,23 +79,22 @@ define(function(require) {
 			return this.urlRoot + this.userRoot + this.logoutRoot + "?userId=" + userId + "&deviceToken=" + deviceToken;
 		},
 
-		giftCaseContacts: function(userId)
+		giftCaseContacts: function(userId, count)
 		{
-			
-			console.log("Request " + this.urlRoot + this.userRoot + this.giftCaseUsersRoot + '?userId=' + userId);
-			return this.urlRoot + this.userRoot + this.giftCaseUsersRoot + '?userId=' + userId;
+			console.log("Request " + this.urlRoot + this.userRoot + this.giftCaseUsersRoot + '?userId=' + userId + "&count=" + count);
+			return this.urlRoot + this.userRoot + this.giftCaseUsersRoot + '?userId=' + userId + "&count=" + count;
 		},
 
-		notGiftCaseContacts: function(accessToken)
+		notGiftCaseContacts: function(accessToken, count)
 		{
-			console.log("Request " + this.urlRoot + this.userRoot + this.notGiftCaseUsersRoot + '?accessToken=' + accessToken);
-			return this.urlRoot + this.userRoot + this.notGiftCaseUsersRoot + '?accessToken=' + accessToken;
+			console.log("Request " + this.urlRoot + this.userRoot + this.notGiftCaseUsersRoot + '?accessToken=' + accessToken + "&count=" + count);
+			return this.urlRoot + this.userRoot + this.notGiftCaseUsersRoot + '?accessToken=' + accessToken + "&count=" + count;
 		},
 
-		events: function(userId)
+		events: function(userId, count)
 		{
-			console.log("Request " + this.urlRoot + this.eventsRoot + '?userId=' + userId);
-			return this.urlRoot + this.eventsRoot + '?userId=' + userId;
+			console.log("Request " + this.urlRoot + this.eventsRoot + '?userId=' + userId + "&count=" + count);
+			return this.urlRoot + this.eventsRoot + '?userId=' + userId + "&count=" + count;
 		},
 
 		categories: function()
@@ -125,7 +145,7 @@ define(function(require) {
 				resultingURL = resultingURL + "&count=" + count;
 			}
 			
-			alert("suggestedGifts " + resultingURL);
+			//alert("suggestedGifts " + resultingURL);
 			console.log("Request " + resultingURL);
 			return resultingURL;
 		}

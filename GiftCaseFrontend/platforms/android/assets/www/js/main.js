@@ -42,10 +42,11 @@ require.config({
     function() {
       //CollectionTests.inboxTest();
        
-      var appDataPar = new AppData();
+      var appDataPar = new AppData();      
 
       // Here we precompile ALL the templates so that the app will be quickier when switching views
       // see utils.js
+      var router;
       Utils.loadTemplates().once("templatesLoaded", function() {
 
       var images = []; // here the developer can add the paths to the images that he would like to be preloaded
@@ -66,5 +67,6 @@ require.config({
           Backbone.history.start();
         }
       });
+
     }, false);
 });

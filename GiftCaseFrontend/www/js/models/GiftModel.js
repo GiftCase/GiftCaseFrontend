@@ -13,32 +13,34 @@ define(function(require) {
 		    Item: '',
 		    GiftStatus: '',
 		    UserWhoGaveTheGift: '',
-		    UserWhoReceivedTheGift: ''
+		    UserWhoReceivedTheGift: '',
+		    Id:''
 		},
 
 		initialize: function(options)
 		{
-			this.appdata = options.appdata;
 		},
 		
-		customSetGift : function(giftObject)
+		customSetGift : function(giftObject, appdataPar)
 		{
+			//console.log(giftObject.Id);
 			var sender = new ContactModel({
-				appdata: this.appdata});
+				appdata: appdataPar});
 			sender.customSetContact(giftObject.UserWhoGaveTheGift);
 			var receiver = new ContactModel({
-				appdata: this.appdata
+				appdata: appdataPar
 			});
 			receiver.customSetContact(giftObject.UserWhoReceivedTheGift);
 			var item = new ItemModel();
-			item.customSetItem(this.appdata, giftObject.Item);
+			item.customSetItem(appdataPar, giftObject.Item);
 			var date = new Date(giftObject.DateOfPurchase);
 			this.set({
 				DateOfPurchase: date, 
 				Item: item,
 				GiftStatus: giftObject.Status,
 				UserWhoGaveTheGift: sender,
-				UserWhoReceivedTheGift: receiver
+				UserWhoReceivedTheGift: receiver,
+				Id: giftObject.Id
 			});
 		}
 	});

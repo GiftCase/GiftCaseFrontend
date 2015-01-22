@@ -5,6 +5,7 @@ define(function(require) {
   var Utils = require("utils");
   var FacebookHelper = require("helpers/FacebookHelper");
   var ItemsView = require("views/pages/ItemsView");
+  var StorageHelper = require("helpers/StorageHelper");
 
   var StructureView = Backbone.View.extend({
 
@@ -35,19 +36,44 @@ define(function(require) {
       FacebookHelper.logout(this.facebookLogoutHandler, this);
     },
 
-    facebookLogoutHandler: function(self)
+    facebookLogoutHandler: function(success, self)
     {
+      //console.log(self);
+      //console.log(self.appdata);
       self.appdata.user.logout(function()
         {
-          if (self.appdata.user.errorMessage === "")
-          {
-            navigator.app.exitApp();
-          }
-          else
-          {
-            console.log(self.appdata.user.errorMessage);
-          }
         });
+          //if (self.appdata.user.errorMessage === "")
+          //{
+      StorageHelper.saveTofile("FBID", "", function (success){
+      //StorageHelper.saveTofileDummy("FBID", "", function (success){
+        if (success)
+        {
+          //alert("FBID saved success");
+          StorageHelper.saveTofile("GCMID", "", function (success){
+          //StorageHelper.saveTofileDummy("GCMID", "", function (success){
+            if (success)
+            {
+              navigator.app.exitApp();
+              //alert("GCMID saved success");
+            }
+            else
+            {
+              //alert("GCMID saved not success");
+            }
+          });
+        }
+        else
+        {
+          //alert("FBID saved not success");
+        }
+      });
+          //}
+          //else
+          //{
+          //  alert(self.appdata.user.errorMessage);
+          //}
+        //});
     },
 
     render: function() {
@@ -110,7 +136,7 @@ define(function(require) {
     },
 
     contacts: function(event) {
-      console.log($("#contactsIcon"));
+      //console.log($("#contactsIcon"));
       $("#settingIcon").attr("src", "img/settingsIconInactive.png");
       $("#giftBoxIcon").attr("src", "img/giftBoxIconInactive.png");
       $("#eventsIcon").attr("src", "img/eventsIconInactive.png");

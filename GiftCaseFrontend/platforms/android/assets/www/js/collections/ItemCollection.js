@@ -30,6 +30,7 @@ define(function(require) {
 		initialize: function (options) {
 			var self = this;
 			this.appdata = options.appdata;
+			this.count = this.appdata.countOfRecords;
 	        this.on("invalid", function (model, error) {
 	            self.errorMessage = "Ups, an error occured during loading gifts";
 	        });

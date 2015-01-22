@@ -7,12 +7,12 @@ PushNotification.prototype.register = function(successCallback, errorCallback, o
     if (errorCallback == null) { errorCallback = function() {}}
 
     if (typeof errorCallback != "function")  {
-        console.log("PushNotification.register failure: failure parameter not a function");
+        //console.log("PushNotification.register failure: failure parameter not a function");
         return
     }
 
     if (typeof successCallback != "function") {
-        console.log("PushNotification.register failure: success callback parameter must be a function");
+        //console.log("PushNotification.register failure: success callback parameter must be a function");
         return
     }
 
@@ -24,12 +24,12 @@ PushNotification.prototype.unregister = function(successCallback, errorCallback,
     if (errorCallback == null) { errorCallback = function() {}}
 
     if (typeof errorCallback != "function")  {
-        console.log("PushNotification.unregister failure: failure parameter not a function");
+        //console.log("PushNotification.unregister failure: failure parameter not a function");
         return
     }
 
     if (typeof successCallback != "function") {
-        console.log("PushNotification.unregister failure: success callback parameter must be a function");
+        //console.log("PushNotification.unregister failure: success callback parameter must be a function");
         return
     }
 
@@ -41,7 +41,7 @@ PushNotification.prototype.unregister = function(successCallback, errorCallback,
         if (errorCallback == null) { errorCallback = function () { } }
 
         if (typeof errorCallback != "function") {
-            console.log("PushNotification.register failure: failure parameter not a function");
+            //console.log("PushNotification.register failure: failure parameter not a function");
             return
         }
 
@@ -52,12 +52,12 @@ PushNotification.prototype.setApplicationIconBadgeNumber = function(successCallb
     if (errorCallback == null) { errorCallback = function() {}}
 
     if (typeof errorCallback != "function")  {
-        console.log("PushNotification.setApplicationIconBadgeNumber failure: failure parameter not a function");
+        //console.log("PushNotification.setApplicationIconBadgeNumber failure: failure parameter not a function");
         return
     }
 
     if (typeof successCallback != "function") {
-        console.log("PushNotification.setApplicationIconBadgeNumber failure: success callback parameter must be a function");
+        //console.log("PushNotification.setApplicationIconBadgeNumber failure: success callback parameter must be a function");
         return
     }
 
